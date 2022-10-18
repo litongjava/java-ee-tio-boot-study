@@ -17,7 +17,7 @@
     </fileSet>
 
     <fileSet>
-      <directory>${project.basedir}/bin</directory>
+      <directory>${project.basedir}/script</directory>
       <outputDirectory></outputDirectory>
       <includes>
         <include>*.bat</include>
