@@ -14,7 +14,7 @@
     <dependency>
       <groupId>com.litongjava</groupId>
       <artifactId>tio-boot</artifactId>
-      <version>1.0</version>
+      <version>3.7.3.v20210706-RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
