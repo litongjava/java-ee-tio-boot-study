@@ -2,8 +2,10 @@ package com.litongjava.tio.boot.hello;
 
 import org.tio.utils.jfinal.P;
 
-import com.litongjava.tio.http.server.boot.TioApplication;
+import com.litongjava.tio.boot.TioApplication;
+import com.litongjava.tio.boot.annotation.ComponentScan;
 
+@ComponentScan
 public class TioBootWebApp {
 
   public static void main(String[] args) throws Exception {
