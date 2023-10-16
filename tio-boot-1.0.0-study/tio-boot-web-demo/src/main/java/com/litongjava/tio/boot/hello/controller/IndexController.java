@@ -25,7 +25,7 @@ public class IndexController {
   @RequestPath
   public HttpResponse respText(HttpRequest request) throws Exception {
     log.info("txt");
-    HttpResponse ret = Resps.txt(request, "hello 3");
+    HttpResponse ret = Resps.txt(request, "hello 1");
     return ret;
   }
 
