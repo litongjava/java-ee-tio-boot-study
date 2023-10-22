@@ -11,7 +11,7 @@ import com.jfinal.plugin.activerecord.Record;
 import com.litongjava.data.model.DbJsonBean;
 import com.litongjava.data.services.DbJsonService;
 import com.litongjava.jfinal.aop.Aop;
-import com.litongjava.tio.boot.annotation.Controller;
+import com.litongjava.jfinal.aop.annotation.Controller;
 
 @Controller
 @RequestPath("/db")

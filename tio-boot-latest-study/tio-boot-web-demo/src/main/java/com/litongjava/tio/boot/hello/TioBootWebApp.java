@@ -1,13 +1,11 @@
 package com.litongjava.tio.boot.hello;
 
+import org.tio.utils.jfinal.P;
+
 import com.litongjava.hotswap.debug.Diagnostic;
 import com.litongjava.hotswap.wrapper.tio.boot.TioApplicationWrapper;
-import com.litongjava.tio.boot.TioApplication;
-import com.litongjava.tio.boot.annotation.ComponentScan;
+import com.litongjava.jfinal.aop.annotation.ComponentScan;
 import com.litongjava.tio.boot.context.Context;
-import org.tio.http.server.HttpServerStarter;
-import org.tio.server.TioServer;
-import org.tio.utils.jfinal.P;
 
 @ComponentScan
 public class TioBootWebApp {

@@ -8,7 +8,7 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.OrderedFieldContainerFactory;
 import com.jfinal.template.Engine;
 import com.jfinal.template.source.ClassPathSourceFactory;
-import com.litongjava.tio.boot.annotation.Bean;
+import com.litongjava.jfinal.aop.annotation.Bean;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 

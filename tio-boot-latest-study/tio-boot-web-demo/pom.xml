@@ -15,7 +15,22 @@
     <dependency>
       <groupId>com.litongjava</groupId>
       <artifactId>tio-boot</artifactId>
-      <version>1.0.2</version>
+      <version>1.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>hotswap-classloader</artifactId>
+      <version>1.1.4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>jfinal-aop</artifactId>
+      <version>1.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>table-to-json</artifactId>
+      <version>1.2.1</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -30,11 +45,6 @@
       <version>1.2.3</version>
     </dependency>
 
-    <dependency>
-      <groupId>com.litongjava</groupId>
-      <artifactId>table-to-json</artifactId>
-      <version>1.2.1</version>
-    </dependency>
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
@@ -58,11 +68,7 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>com.litongjava</groupId>
-      <artifactId>hotswap-classloader</artifactId>
-      <version>1.1.4</version>
-    </dependency>
+
   </dependencies>
   <build>
     <plugins>

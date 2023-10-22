@@ -1,6 +1,5 @@
 package com.litongjava.tio.boot.hello.services;
 
-import com.litongjava.tio.boot.annotation.Service;
 import com.litongjava.tio.boot.hello.model.User;
 
 //@Service
