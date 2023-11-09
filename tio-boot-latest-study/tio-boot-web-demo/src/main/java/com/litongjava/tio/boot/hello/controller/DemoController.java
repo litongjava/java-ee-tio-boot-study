@@ -33,6 +33,11 @@ public class DemoController {
     return ret;
   }
 
+  @RequestPath(value = "/responseUser")
+  public User responseUser(HttpRequest request) throws Exception {
+    return User.builder().loginName("Ping E Lee").nick("李通").ip("127.0.0.1").build();
+  }
+  
   @RequestPath(value = "/getBodyString")
   public HttpResponse getBodyString(HttpRequest request) throws Exception {
     String bodyString = request.getBodyString();
