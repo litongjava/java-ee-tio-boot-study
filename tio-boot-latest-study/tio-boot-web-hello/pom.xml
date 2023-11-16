@@ -8,6 +8,7 @@
     <java.version>1.8</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
+    <tio.boot.version>1.0.7</tio.boot.version>
     <lombok-version>1.18.24</lombok-version>
     <main.class>com.litongjava.tio.web.hello.App</main.class>
   </properties>
@@ -15,7 +16,7 @@
     <dependency>
       <groupId>com.litongjava</groupId>
       <artifactId>tio-boot</artifactId>
-      <version>1.0.7</version>
+      <version>${tio.boot.version}</version>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>

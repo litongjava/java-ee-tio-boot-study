@@ -1,9 +1,14 @@
 package com.litongjava.tio.web.hello.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class IndexService {
 
-  public String index() {
-    return "Hello";
+  public Map<String, String> index() {
+    Map<String, String> ret = new HashMap<>();
+    ret.put("data", "Hello");
+    return ret;
   }
 
 }
