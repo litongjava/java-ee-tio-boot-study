@@ -8,13 +8,20 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.OrderedFieldContainerFactory;
 import com.jfinal.template.Engine;
 import com.jfinal.template.source.ClassPathSourceFactory;
+import com.litongjava.jfinal.aop.Aop;
 import com.litongjava.jfinal.aop.annotation.Bean;
+import com.litongjava.jfinal.aop.annotation.Configuration;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-//@Configuration
+@Configuration
 public class TableToJsonConfig {
 
+  /**
+   * config datasource
+   * @return
+   */
+  @Bean(priority = 1)
   public DataSource dataSource() {
     String jdbcUrl = P.get("jdbc.url");
     String jdbcUser = P.get("jdbc.user");
@@ -31,10 +38,16 @@ public class TableToJsonConfig {
     return new HikariDataSource(config);
   }
 
+  /**
+   * config ActiveRecordPlugin
+   * @return
+   * @throws Exception
+   */
   @Bean(destroyMethod = "stop", initMethod = "start")
   public ActiveRecordPlugin activeRecordPlugin() throws Exception {
+    DataSource dataSource = Aop.get(DataSource.class);
     String property = P.get("tio.mode");
-    ActiveRecordPlugin arp = new ActiveRecordPlugin(dataSource());
+    ActiveRecordPlugin arp = new ActiveRecordPlugin(dataSource);
     arp.setContainerFactory(new OrderedFieldContainerFactory());
     if ("dev".equals(property)) {
       arp.setDevMode(true);
