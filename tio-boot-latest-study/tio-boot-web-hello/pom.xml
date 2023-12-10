@@ -116,7 +116,7 @@
             </executions>
             <configuration>
               <skip>false</skip>
-              <imageName>${build.finalName}</imageName>
+              <imageName>${project.build.finalName}</imageName>
               <mainClass>${main.class}</mainClass>
               <buildArgs>
                 -H:+RemoveSaturatedTypeFlows
