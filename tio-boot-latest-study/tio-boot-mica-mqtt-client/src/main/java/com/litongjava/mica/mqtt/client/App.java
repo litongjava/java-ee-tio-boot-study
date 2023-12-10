@@ -1,9 +1,8 @@
 package com.litongjava.mica.mqtt.client;
 
-import org.tio.utils.jfinal.P;
-
 import com.litongjava.hotswap.wrapper.tio.boot.TioApplicationWrapper;
 import com.litongjava.jfinal.aop.annotation.ComponentScan;
+import com.litongjava.tio.utils.jfinal.P;
 
 @ComponentScan
 public class App {
