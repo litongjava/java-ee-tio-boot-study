@@ -7,6 +7,6 @@ public class IndexController {
 
   @RequestPath("")
   public String index() {
-    return "index2";
+    return "index0";
   }
 }
