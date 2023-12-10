@@ -63,18 +63,31 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>2.7.4</version>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.2.0</version>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.1.1</version>
             <configuration>
-              <mainClass>${main.class}</mainClass>
-              <excludeGroupIds>org.projectlombok</excludeGroupIds>
+              <archive>
+                <manifest>
+                  <mainClass>${main.class}</mainClass>
+                </manifest>
+              </archive>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+              <appendAssemblyId>false</appendAssemblyId>
             </configuration>
-            <!-- 设置执行目标 -->
             <executions>
               <execution>
+                <id>make-assembly</id>
+                <phase>package</phase>
                 <goals>
-                  <goal>repackage</goal>
+                  <goal>single</goal>
                 </goals>
               </execution>
             </executions>
