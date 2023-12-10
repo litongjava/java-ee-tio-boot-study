@@ -1,9 +1,8 @@
 package com.litongjava.tio.web.socket.hello;
 
-import org.tio.utils.jfinal.P;
-
 import com.litongjava.jfinal.aop.annotation.ComponentScan;
 import com.litongjava.tio.boot.TioApplication;
+import com.litongjava.tio.utils.jfinal.P;
 
 @ComponentScan
 public class App {

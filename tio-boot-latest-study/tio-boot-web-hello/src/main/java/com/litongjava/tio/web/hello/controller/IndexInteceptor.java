@@ -13,7 +13,6 @@ public class IndexInteceptor implements Interceptor {
     log.info("1before");
     inv.invoke();
     log.info("after");
-
   }
 
 }

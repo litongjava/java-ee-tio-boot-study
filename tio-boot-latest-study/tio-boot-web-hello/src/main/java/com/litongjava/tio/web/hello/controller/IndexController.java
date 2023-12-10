@@ -2,10 +2,9 @@ package com.litongjava.tio.web.hello.controller;
 
 import java.util.Map;
 
-import org.tio.http.server.annotation.RequestPath;
-
 import com.litongjava.jfinal.aop.Aop;
 import com.litongjava.jfinal.aop.Before;
+import com.litongjava.tio.http.server.annotation.RequestPath;
 import com.litongjava.tio.web.hello.service.IndexService;
 
 @RequestPath("/")
