@@ -7,8 +7,7 @@ public class IndexService {
 
   public Map<String, String> index() {
     Map<String, String> ret = new HashMap<>();
-    ret.put("data", "Hello 4");
+    ret.put("data", "Hello 11");
     return ret;
   }
-
 }

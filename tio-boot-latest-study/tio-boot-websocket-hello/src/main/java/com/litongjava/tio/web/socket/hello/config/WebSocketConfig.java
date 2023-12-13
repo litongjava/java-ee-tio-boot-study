@@ -2,7 +2,7 @@ package com.litongjava.tio.web.socket.hello.config;
 
 import com.litongjava.jfinal.aop.annotation.Bean;
 import com.litongjava.jfinal.aop.annotation.Configuration;
-import com.litongjava.tio.boot.websockethandler.WebSocketRoutes;
+import com.litongjava.tio.boot.websocket.handler.WebSocketRoutes;
 import com.litongjava.tio.web.socket.hello.handler.HelloWebSocketHandler;
 
 @Configuration

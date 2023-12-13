@@ -11,7 +11,12 @@ import com.litongjava.tio.web.hello.service.IndexService;
 public class IndexController {
   @RequestPath()
   @Before(IndexInteceptor.class)
-  public Map<String,String> index() {
+  public Map<String, String> index() {
     return Aop.get(IndexService.class).index();
+  }
+
+  @RequestPath("classloalder")
+  public String classloalder() {
+    return this.getClass().getClassLoader().toString();
   }
 }
