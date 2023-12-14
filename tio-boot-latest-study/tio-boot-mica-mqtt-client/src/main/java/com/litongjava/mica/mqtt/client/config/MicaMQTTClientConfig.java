@@ -36,7 +36,7 @@ public class MicaMQTTClientConfig {
       @Override
       public void onSubscribed(ChannelContext context, String topicFilter, MqttQoS mqttQoS) {
         // 订阅成功之后触发，可在此处做一些业务逻辑
-        log.info("topicFilter:{} MqttQoS:{} 订阅成功！！！", topicFilter, mqttQoS);
+        log.info("topicFilter:{} MqttQoS:{} Subscription successful", topicFilter, mqttQoS);
       }
 
       @Override
@@ -50,7 +50,7 @@ public class MicaMQTTClientConfig {
     timer.schedule(new TimerTask() {
       @Override
       public void run() {
-        client.publish("/test/client", "mica最牛皮".getBytes(StandardCharsets.UTF_8));
+        client.publish("/test/client", "hello this is mica client".getBytes(StandardCharsets.UTF_8));
       }
     }, 1000, 2000);
 

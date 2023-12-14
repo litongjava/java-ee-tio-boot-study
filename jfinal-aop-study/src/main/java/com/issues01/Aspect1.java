@@ -1,10 +1,10 @@
 package com.issues01;
 
-import com.litongjava.jfinal.aop.Interceptor;
-import com.litongjava.jfinal.aop.Invocation;
+//import com.litongjava.jfinal.aop.Interceptor;
+//import com.litongjava.jfinal.aop.Invocation;
 
-//import com.jfinal.aop.Interceptor;
-//import com.jfinal.aop.Invocation;
+import com.jfinal.aop.Interceptor;
+import com.jfinal.aop.Invocation;
 
 public class Aspect1 implements Interceptor {
 

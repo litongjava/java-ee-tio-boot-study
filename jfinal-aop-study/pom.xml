@@ -8,23 +8,37 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!--
     <java.version>21</java.version>
+    -->
+    <java.version>1.8</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
   </properties>
 
   <dependencies>
+    <!--    <dependency>-->
+    <!--      <groupId>com.litongjava</groupId>-->
+    <!--      <artifactId>jfinal-aop</artifactId>-->
+    <!--      <version>1.1.0</version>-->
+    <!--    </dependency>-->
     <dependency>
       <groupId>com.litongjava</groupId>
-      <artifactId>jfinal-aop</artifactId>
-      <version>1.0.8</version>
+      <artifactId>hotswap-classloader</artifactId>
+      <version>1.1.5</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.jfinal/jfinal -->
-<!--    <dependency>-->
-<!--      <groupId>com.jfinal</groupId>-->
-<!--      <artifactId>jfinal</artifactId>-->
-<!--      <version>5.1.5</version>-->
-<!--    </dependency>-->
+    <!--    https://mvnrepository.com/artifact/com.jfinal/jfinal-->
+    <dependency>
+      <groupId>com.jfinal</groupId>
+      <artifactId>jfinal</artifactId>
+      <version>5.1.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+    </dependency>
 
   </dependencies>
 </project>

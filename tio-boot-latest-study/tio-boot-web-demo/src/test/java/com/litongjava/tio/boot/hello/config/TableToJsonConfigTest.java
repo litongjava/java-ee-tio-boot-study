@@ -2,13 +2,13 @@ package com.litongjava.tio.boot.hello.config;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.tio.utils.jfinal.P;
 
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.OrderedFieldContainerFactory;
 import com.jfinal.plugin.hikaricp.HikariCpPlugin;
 import com.jfinal.template.Engine;
 import com.jfinal.template.source.ClassPathSourceFactory;
+import com.litongjava.tio.utils.jfinal.P;
 
 public class TableToJsonConfigTest {
 
