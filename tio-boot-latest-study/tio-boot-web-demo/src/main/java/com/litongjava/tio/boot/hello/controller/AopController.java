@@ -1,11 +1,10 @@
 package com.litongjava.tio.boot.hello.controller;
 
-import org.tio.http.common.HttpRequest;
-import org.tio.http.common.HttpResponse;
-import org.tio.http.server.annotation.RequestPath;
-import org.tio.http.server.util.Resps;
-
 import com.litongjava.jfinal.aop.Aop;
+import com.litongjava.tio.http.common.HttpRequest;
+import com.litongjava.tio.http.common.HttpResponse;
+import com.litongjava.tio.http.server.annotation.RequestPath;
+import com.litongjava.tio.http.server.util.Resps;
 
 @RequestPath("/aop")
 public class AopController {
