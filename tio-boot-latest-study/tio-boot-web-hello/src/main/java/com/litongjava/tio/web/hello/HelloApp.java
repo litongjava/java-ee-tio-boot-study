@@ -10,7 +10,6 @@ import com.litongjava.tio.utils.jfinal.P;
 public class HelloApp {
   public static void main(String[] args) {
     long start = System.currentTimeMillis();
-    P.use("app.properties");
     HotSwapResolver.addHotSwapClassPrefix("com.litongjava.jfinal");
      TioApplicationWrapper.run(HelloApp.class, args);
 //    TioApplication.run(HelloApp.class, args);
