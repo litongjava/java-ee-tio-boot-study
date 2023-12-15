@@ -10,7 +10,7 @@ import com.litongjava.tio.web.hello.service.IndexService;
 @RequestPath("/")
 public class IndexController {
   @RequestPath()
-  @Before(IndexInteceptor.class)
+  //@Before(IndexInteceptor.class)
   public Map<String, String> index() {
     return Aop.get(IndexService.class).index();
   }
