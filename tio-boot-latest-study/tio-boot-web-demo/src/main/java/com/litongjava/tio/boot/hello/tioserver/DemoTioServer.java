@@ -26,6 +26,6 @@ public class DemoTioServer {
     TioServer tioServer = new TioServer(tioServerConfig);
 
     // 启动服务
-    tioServer.start(null, 6789);
+    tioServer.start(null, 9998);
   }
 }
