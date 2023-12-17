@@ -13,7 +13,7 @@ import com.xxl.job.core.executor.impl.XxlJobSimpleExecutor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Configuration
+//@Configuration
 public class XxlJobExecutorConfig {
 
   @Bean(destroyMethod = "destroy")

@@ -1,11 +1,13 @@
 package com.litongjava.tio.boot.hello.controller;
 
+import com.litongjava.jfinal.aop.annotation.Controller;
 import com.litongjava.tio.http.common.Cookie;
 import com.litongjava.tio.http.common.HttpRequest;
 import com.litongjava.tio.http.common.HttpResponse;
 import com.litongjava.tio.http.server.annotation.RequestPath;
 import com.litongjava.tio.http.server.util.Resps;
 
+@Controller
 @RequestPath("/test/cookie")
 public class TestCookieController {
 

@@ -3,6 +3,7 @@ package com.litongjava.tio.boot.hello.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import com.litongjava.jfinal.aop.annotation.Controller;
 import com.litongjava.tio.http.common.HttpRequest;
 import com.litongjava.tio.http.common.HttpResponse;
 import com.litongjava.tio.http.server.annotation.RequestPath;
@@ -12,6 +13,7 @@ import com.litongjava.tio.utils.resp.RespVo;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.qrcode.QrCodeUtil;
 
+@Controller
 @RequestPath("/qr")
 public class QrController {
 

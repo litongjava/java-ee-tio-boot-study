@@ -7,9 +7,11 @@ import com.litongjava.data.model.DbJsonBean;
 import com.litongjava.data.services.DbJsonService;
 import com.litongjava.data.utils.DbJsonBeanUtils;
 import com.litongjava.jfinal.aop.Aop;
+import com.litongjava.jfinal.aop.annotation.Controller;
 import com.litongjava.tio.http.common.HttpRequest;
 import com.litongjava.tio.http.server.annotation.RequestPath;
 
+@Controller
 @RequestPath("/db/student")
 public class DbTestController {
 

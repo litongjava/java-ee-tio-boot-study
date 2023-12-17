@@ -1,5 +1,6 @@
 package com.litongjava.tio.boot.hello.controller;
 
+import com.litongjava.jfinal.aop.annotation.Controller;
 import com.litongjava.tio.boot.hello.model.User;
 import com.litongjava.tio.http.common.HttpRequest;
 import com.litongjava.tio.http.common.HttpResponse;
@@ -10,6 +11,7 @@ import com.litongjava.tio.utils.resp.RespVo;
 
 import lombok.extern.slf4j.Slf4j;
 
+@Controller
 @RequestPath("/test/json")
 @Slf4j
 public class TestJsonController {

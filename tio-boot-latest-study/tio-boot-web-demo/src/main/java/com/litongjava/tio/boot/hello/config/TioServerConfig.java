@@ -3,7 +3,6 @@ package com.litongjava.tio.boot.hello.config;
 import java.io.IOException;
 
 import com.litongjava.jfinal.aop.annotation.Bean;
-import com.litongjava.jfinal.aop.annotation.Configuration;
 import com.litongjava.tio.boot.hello.tioserver.DemoTioServer;
 
 //@Configuration

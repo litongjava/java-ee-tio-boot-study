@@ -1,4 +1,4 @@
-package com.litongjava.tio.boot.hello.controller;
+package com.litongjava.tio.boot.hello.config;
 
 import com.litongjava.jfinal.aop.Aop;
 import com.litongjava.jfinal.aop.annotation.Bean;

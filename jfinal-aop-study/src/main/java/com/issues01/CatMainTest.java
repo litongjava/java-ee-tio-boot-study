@@ -1,7 +1,8 @@
 package com.issues01;
 
-import com.jfinal.aop.Aop;
+//import com.jfinal.aop.Aop;
 import com.litongjava.hotswap.wrapper.app.SimpleApp;
+import com.litongjava.jfinal.aop.Aop;
 
 //import com.jfinal.aop.Aop;
 

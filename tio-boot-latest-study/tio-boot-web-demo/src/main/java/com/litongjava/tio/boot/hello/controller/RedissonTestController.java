@@ -2,6 +2,7 @@ package com.litongjava.tio.boot.hello.controller;
 
 import com.litongjava.jfinal.aop.Aop;
 import com.litongjava.jfinal.aop.Autowired;
+import com.litongjava.jfinal.aop.annotation.Controller;
 import com.litongjava.tio.http.common.HttpRequest;
 import com.litongjava.tio.http.server.annotation.RequestPath;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import org.redisson.api.RBucket;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 
+@Controller
 @RequestPath("/redisson")
 @Slf4j
 public class RedissonTestController {

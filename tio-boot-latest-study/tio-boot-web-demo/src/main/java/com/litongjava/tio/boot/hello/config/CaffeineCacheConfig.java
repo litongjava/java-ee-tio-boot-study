@@ -1,11 +1,11 @@
 package com.litongjava.tio.boot.hello.config;
 
+import java.util.concurrent.TimeUnit;
+
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.litongjava.jfinal.aop.annotation.Bean;
 import com.litongjava.jfinal.aop.annotation.Configuration;
-
-import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class CaffeineCacheConfig {
@@ -16,4 +16,5 @@ public class CaffeineCacheConfig {
       .expireAfterWrite(5, TimeUnit.MINUTES)
       .build();
   }
+
 }
