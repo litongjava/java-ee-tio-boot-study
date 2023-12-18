@@ -1,6 +1,7 @@
 package com.litongjava.jfinal.plugins.redis;
 
 import com.alibaba.fastjson2.JSON;
+import com.litongjava.jfinal.aop.Aop;
 import com.litongjava.jfinal.plugin.redis.Cache;
 import com.litongjava.jfinal.plugin.redis.Redis;
 import com.litongjava.jfinal.plugin.redis.RedisPlugin;
@@ -39,6 +40,12 @@ public class RedisDemo {
     });
 
     System.out.println(user1);
+
+    UserService userService = Aop.get(UserService.class);
+    String user = userService.getUser("litongjava");
+    System.out.println(user);
+    userService.getUser("litongjava");
+    userService.getUser("litongjava");
     bbsRedis.stop();
   }
 }

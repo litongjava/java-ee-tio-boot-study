@@ -1,8 +1,8 @@
-package com.litongjava.jfinal.plugins.ecache;
+package com.litongjava.jfinal.plugins.redis;
 
 import com.litongjava.jfinal.aop.Before;
 import com.litongjava.jfinal.plugin.cache.CacheName;
-import com.litongjava.jfinal.plugin.ehcache.EcacheCacheInterceptor;
+import com.litongjava.jfinal.plugin.redis.RedisCacheInterceptor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -11,10 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserService {
 
-  @Before(EcacheCacheInterceptor.class)
+  @Before(RedisCacheInterceptor.class)
   @CacheName("user")
-  public String getUser(String username){
-    System.out.println("username:"+username);
+  public String getUser(String username) {
+    System.out.println("username:" + username);
     return username;
   }
 }
