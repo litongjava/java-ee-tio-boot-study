@@ -1,20 +1,23 @@
 package com.litongjava.tio.web.hello;
 
-import com.litongjava.ai.server.padddle.ocr.config.PaddleOcrConfig;
-import com.litongjava.ai.server.padddle.ocr.controller.PaddleOcrController;
+import com.litongjava.ai.server.padddle.ocr.OcrServer;
 import com.litongjava.jfinal.aop.annotation.ComponentScan;
 import com.litongjava.jfinal.aop.annotation.Controller;
-import com.litongjava.jfinal.aop.annotation.Import;
 import com.litongjava.tio.boot.TioApplication;
 import com.litongjava.tio.http.server.annotation.RequestPath;
 
-@ComponentScan
+//@ComponentScan(value = {}, excludeFilters = {
+//    @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = NoThingConfig.class),
+//    @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = PaddleOcrConfig.class) }
+//)
+@ComponentScan()
 @Controller
 @RequestPath("/")
-@Import({ PaddleOcrConfig.class, PaddleOcrController.class })
+//@Import({ PaddleOcrConfig.class, PaddleOcrController.class })
+
 public class HelloApp {
   public static void main(String[] args) {
-    TioApplication.run(HelloApp.class, args);
+    TioApplication.run(new Class[] { HelloApp.class, OcrServer.class }, args);
   }
 
   @RequestPath()
