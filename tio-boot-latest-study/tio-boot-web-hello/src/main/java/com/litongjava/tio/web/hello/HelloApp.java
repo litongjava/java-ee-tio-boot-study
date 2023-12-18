@@ -10,7 +10,10 @@ import com.litongjava.tio.http.server.annotation.RequestPath;
 @RequestPath("/")
 public class HelloApp {
   public static void main(String[] args) {
+    long start = System.currentTimeMillis();
     TioApplication.run(HelloApp.class, args);
+    long end = System.currentTimeMillis();
+    System.out.println((end - start) + "ms");
   }
 
   @RequestPath()

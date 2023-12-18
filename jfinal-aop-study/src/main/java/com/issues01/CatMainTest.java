@@ -17,6 +17,7 @@ public class CatMainTest {
     System.out.println("java-version:" + javaVersion);
     // ProxyManager.me().setProxyFactory(new CglibProxyFactory());
     Cat cat = Aop.get(Cat.class);
-    cat.eat();
+    String eat = cat.eat();
+    System.out.println(eat);
   }
 }

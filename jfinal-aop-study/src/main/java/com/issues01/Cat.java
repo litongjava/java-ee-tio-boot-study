@@ -5,7 +5,8 @@ import com.litongjava.jfinal.aop.Before;
 
 public class Cat {
   @Before(Aspect1.class)
-  public void eat() {
+  public String eat() {
     System.out.println("cat eat");
+    return "eat chat";
   }
 }
