@@ -4,7 +4,7 @@ import com.litongjava.jfinal.aop.annotation.Bean;
 import com.litongjava.jfinal.aop.annotation.BeforeStartConfiguration;
 import com.litongjava.tio.boot.server.TioBootServerListener;
 
-@BeforeStartConfiguration
+//@BeforeStartConfiguration
 public class TioBootServerListenerConfigure {
 
   @Bean

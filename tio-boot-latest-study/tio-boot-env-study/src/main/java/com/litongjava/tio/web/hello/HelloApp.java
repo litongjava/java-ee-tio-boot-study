@@ -15,6 +15,16 @@ public class HelloApp {
 
   @RequestPath()
   public String index() {
-    return "index4";
+    return "index5";
+  }
+
+  @RequestPath("/test1")
+  public String test1() {
+    return "index5";
+  }
+
+  @RequestPath("/test2")
+  public String test2() {
+    return "index5";
   }
 }
