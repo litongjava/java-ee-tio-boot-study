@@ -81,7 +81,7 @@
       </build>
     </profile>
     <profile>
-      <id>mqtt-server-graal</id>
+      <id>server-graalvm</id>
       <dependencies>
         <!-- GraalVM 环境使用 jdk log -->
         <dependency>
