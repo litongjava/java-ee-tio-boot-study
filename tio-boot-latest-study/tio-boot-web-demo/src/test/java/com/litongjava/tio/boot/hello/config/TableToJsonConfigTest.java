@@ -8,25 +8,25 @@ import com.jfinal.plugin.activerecord.OrderedFieldContainerFactory;
 import com.jfinal.plugin.hikaricp.HikariCpPlugin;
 import com.jfinal.template.Engine;
 import com.jfinal.template.source.ClassPathSourceFactory;
-import com.litongjava.tio.utils.jfinal.P;
+import com.litongjava.tio.utils.environment.PropUtils;
 
 public class TableToJsonConfigTest {
 
   @Before
   public void before() {
-    P.use("app.properties");
+    PropUtils.use("app.properties");
   }
   @Test
   public void test() {
-    String jdbcUrl = P.get("jdbc.url");
-    String jdbcUser = P.get("jdbc.user");
+    String jdbcUrl = PropUtils.get("jdbc.url");
+    String jdbcUser = PropUtils.get("jdbc.user");
     
-    String jdbcPswd = P.get("jdbc.pswd");
+    String jdbcPswd = PropUtils.get("jdbc.pswd");
     HikariCpPlugin dp = new HikariCpPlugin(jdbcUrl, jdbcUser, jdbcPswd);
     dp.start();
 
     System.out.println("=====================================");
-    String property = P.get("tio.mode");
+    String property = PropUtils.get("devMode");
     
     ActiveRecordPlugin arp = new ActiveRecordPlugin(dp.getDataSource());
     arp.setContainerFactory(new OrderedFieldContainerFactory());

@@ -3,6 +3,7 @@ package com.litongjava.tio.boot.hello.controller;
 import java.io.File;
 import java.util.Date;
 
+import com.alibaba.fastjson2.JSONObject;
 import com.litongjava.jfinal.aop.annotation.Controller;
 import com.litongjava.jfinal.kit.Kv;
 import com.litongjava.tio.boot.hello.model.User;
@@ -12,7 +13,6 @@ import com.litongjava.tio.http.common.UploadFile;
 import com.litongjava.tio.http.server.annotation.RequestPath;
 import com.litongjava.tio.http.server.util.Resps;
 import com.litongjava.tio.utils.hutool.FileUtil;
-import com.litongjava.tio.utils.json.Json;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,7 +38,7 @@ public class DemoController {
   public User responseUser(HttpRequest request) throws Exception {
     return User.builder().loginName("Ping E Lee").nick("李通").ip("127.0.0.1").build();
   }
-  
+
   @RequestPath(value = "/getBodyString")
   public HttpResponse getBodyString(HttpRequest request) throws Exception {
     String bodyString = request.getBodyString();
@@ -54,19 +54,19 @@ public class DemoController {
     HttpResponse ret = Resps.html(request, bodyString);
     return ret;
   }
-  
+
   @RequestPath(value = "/bean")
   public HttpResponse bean(User user, HttpRequest request) throws Exception {
-    log.info("user:{}",user);
+    log.info("user:{}", user);
     throw new RuntimeException();
 //    HttpResponse ret = Resps.json(request, Json.toFormatedJson(user));
 //    return ret;
   }
-  
+
   @RequestPath(value = "/receiveKv")
   public HttpResponse receiveKv(Kv kv, HttpRequest request) throws Exception {
-    log.info("kv:{}",kv);
-    HttpResponse ret = Resps.json(request, Json.toFormatedJson(kv));
+    log.info("kv:{}", kv);
+    HttpResponse ret = Resps.json(request, JSONObject.toJSONString(kv));
     return ret;
   }
 
@@ -108,7 +108,7 @@ public class DemoController {
   public HttpResponse date(Date[] date, java.sql.Date[] sqlDate, java.sql.Timestamp[] timestamp, HttpRequest request)
       throws Exception {
     HttpResponse ret = Resps.json(request,
-        Json.toFormatedJson(date) + Json.toFormatedJson(sqlDate) + Json.toFormatedJson(timestamp));
+        JSONObject.toJSONString(date) + JSONObject.toJSONString(sqlDate) + JSONObject.toJSONString(timestamp));
     return ret;
   }
 
@@ -135,14 +135,12 @@ public class DemoController {
   @RequestPath(value = "/array")
   public HttpResponse array(String[] names, Integer[] ids, int[] primitiveIds, HttpRequest request) throws Exception {
     HttpResponse ret = Resps.json(request,
-        Json.toFormatedJson(names) + Json.toFormatedJson(ids) + Json.toFormatedJson(primitiveIds));
+        JSONObject.toJSONString(names) + JSONObject.toJSONString(ids) + JSONObject.toJSONString(primitiveIds));
 
     Object[] xx = request.getParamArray("names");
-    log.info("xx:{}", Json.toFormatedJson(xx));
+    log.info("xx:{}", JSONObject.toJSONString(xx));
     return ret;
   }
-
-
 
   @RequestPath(value = "/filetest")
   public HttpResponse filetest(HttpRequest request) throws Exception {

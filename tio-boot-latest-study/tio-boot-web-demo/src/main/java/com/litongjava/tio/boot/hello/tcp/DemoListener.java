@@ -1,7 +1,7 @@
 package com.litongjava.tio.boot.hello.tcp;
 
 import com.litongjava.jfinal.aop.annotation.Component;
-import com.litongjava.tio.boot.tcp.ServerListener;
+import com.litongjava.tio.boot.tcp.ServerHanlderListener;
 import com.litongjava.tio.core.ChannelContext;
 import com.litongjava.tio.core.intf.Packet;
 
@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class DemoListener implements ServerListener {
+public class DemoListener implements ServerHanlderListener {
   public void onAfterConnected(ChannelContext channelContext, boolean isConnected, boolean isReconnect)
       throws Exception {
     log.info("{},{},{}", channelContext, isConnected, isReconnect);

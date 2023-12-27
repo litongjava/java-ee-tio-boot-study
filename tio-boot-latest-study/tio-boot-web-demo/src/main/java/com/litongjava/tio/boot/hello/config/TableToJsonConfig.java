@@ -8,9 +8,7 @@ import com.jfinal.template.Engine;
 import com.jfinal.template.source.ClassPathSourceFactory;
 import com.litongjava.jfinal.aop.Aop;
 import com.litongjava.jfinal.aop.annotation.Bean;
-import com.litongjava.jfinal.aop.annotation.Configuration;
-import com.litongjava.tio.boot.context.Enviorment;
-import com.litongjava.tio.utils.jfinal.P;
+import com.litongjava.tio.utils.environment.EnvironmentUtils;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -24,11 +22,10 @@ public class TableToJsonConfig {
    */
   @Bean(priority = 1)
   public DataSource dataSource() {
-    Enviorment enviorment = Aop.get(Enviorment.class);
-    String jdbcUrl = enviorment.get("jdbc.url");
-    String jdbcUser = enviorment.get("jdbc.user");
+    String jdbcUrl = EnvironmentUtils.get("jdbc.url");
+    String jdbcUser = EnvironmentUtils.get("jdbc.user");
 
-    String jdbcPswd = enviorment.get("jdbc.pswd");
+    String jdbcPswd = EnvironmentUtils.get("jdbc.pswd");
 
     HikariConfig config = new HikariConfig();
     // 设定基本参数
@@ -47,9 +44,8 @@ public class TableToJsonConfig {
    */
   @Bean(destroyMethod = "stop", initMethod = "start")
   public ActiveRecordPlugin activeRecordPlugin() throws Exception {
-    Enviorment enviorment = Aop.get(Enviorment.class);
     DataSource dataSource = Aop.get(DataSource.class);
-    String property = enviorment.get("mode");
+    String property = EnvironmentUtils.get("mode");
     ActiveRecordPlugin arp = new ActiveRecordPlugin(dataSource);
     arp.setContainerFactory(new OrderedFieldContainerFactory());
     if ("dev".equals(property)) {
