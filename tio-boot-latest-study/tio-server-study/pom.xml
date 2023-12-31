@@ -9,6 +9,7 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <main.class>com.litongjava.tio.http.server.MainApp</main.class>
+    <graalvm.version>23.1.1</graalvm.version>
   </properties>
   <dependencies>
     <dependency>
