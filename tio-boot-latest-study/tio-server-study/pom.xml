@@ -129,7 +129,7 @@
         </dependency>
       </dependencies>
       <build>
-        <finalName>${final.name}</finalName>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
           <plugin>
             <groupId>org.graalvm.nativeimage</groupId>
@@ -145,7 +145,7 @@
             </executions>
             <configuration>
               <skip>false</skip>
-              <imageName>${project.build.finalName}</imageName>
+              <imageName>${project.artifactId}</imageName>
               <mainClass>${main.class}</mainClass>
               <buildArgs>
                 -H:+RemoveSaturatedTypeFlows
