@@ -1,9 +1,9 @@
 package com.litongjava.tio.web.hello;
 
-import com.litongjava.jfinal.aop.annotation.ComponentScan;
+import com.litongjava.jfinal.aop.annotation.AComponentScan;
 import com.litongjava.tio.boot.TioApplication;
 
-@ComponentScan
+@AComponentScan
 public class HelloApp {
   public static void main(String[] args) {
     long start = System.currentTimeMillis();

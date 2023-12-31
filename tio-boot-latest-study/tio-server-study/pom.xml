@@ -13,14 +13,8 @@
   <dependencies>
     <dependency>
       <groupId>com.litongjava</groupId>
-      <artifactId>tio-server</artifactId>
-      <version>3.7.3.v20231218-RELEASE</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>com.litongjava</groupId>
       <artifactId>tio-http-server</artifactId>
-      <version>3.7.3.v20231218-RELEASE</version>
+      <version>3.7.3.v20231224-RELEASE</version>
     </dependency>
   </dependencies>
     <profiles>

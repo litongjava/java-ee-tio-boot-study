@@ -6,7 +6,7 @@ import com.litongjava.tio.http.common.HttpConfig;
 import com.litongjava.tio.http.common.handler.HttpRequestHandler;
 import com.litongjava.tio.http.server.controller.IndexController;
 import com.litongjava.tio.http.server.handler.HttpRoutes;
-import com.litongjava.tio.http.server.handler.SimpleHttpDispahterHanlder;
+import com.litongjava.tio.http.server.handler.SimpleHttpDispatcherHandler;
 import com.litongjava.tio.http.server.handler.SimpleHttpRoutes;
 import com.litongjava.tio.server.ServerTioConfig;
 
@@ -23,7 +23,7 @@ public class MainApp {
     // config server
     HttpConfig httpConfig = new HttpConfig(80, null, null, null);
     // 关闭心跳
-    HttpRequestHandler requestHandler = new SimpleHttpDispahterHanlder(httpConfig, simpleHttpRoutes);
+    HttpRequestHandler requestHandler = new SimpleHttpDispatcherHandler(httpConfig, simpleHttpRoutes);
     HttpServerStarter httpServerStarter = new HttpServerStarter(httpConfig, requestHandler);
     ServerTioConfig serverTioConfig = httpServerStarter.getServerTioConfig();
 

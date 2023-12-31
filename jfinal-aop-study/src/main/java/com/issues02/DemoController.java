@@ -6,9 +6,7 @@ import com.litongjava.jfinal.aop.annotation.Controller;
 
 import java.lang.annotation.Inherited;
 
-/**
- * Created by litonglinux@qq.com on 12/16/2023_4:07 PM
- */
+
 @Controller
 public class DemoController {
 

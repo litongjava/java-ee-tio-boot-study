@@ -18,8 +18,15 @@ public class RedisDemo {
     bbsRedis.start();
 
     Cache bbsCache = Redis.use("bbs");
+    //存储String类型
     bbsCache.set("key", "value___001");
     Object value = bbsCache.get("key");
+    System.out.println(value);
+
+    //存储Object类型
+    Object obj=new String("value___001");
+    bbsCache.set("key_object", obj);
+    value = bbsCache.get("key_object");
     System.out.println(value);
 
 
@@ -41,11 +48,6 @@ public class RedisDemo {
 
     System.out.println(user1);
 
-    UserService userService = Aop.get(UserService.class);
-    String user = userService.getUser("litongjava");
-    System.out.println(user);
-    userService.getUser("litongjava");
-    userService.getUser("litongjava");
-    bbsRedis.stop();
+
   }
 }

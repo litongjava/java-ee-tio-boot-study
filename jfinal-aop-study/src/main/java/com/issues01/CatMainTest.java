@@ -1,15 +1,13 @@
 package com.issues01;
 
-//import com.jfinal.aop.Aop;
-import com.litongjava.hotswap.wrapper.app.SimpleApp;
 import com.litongjava.jfinal.aop.Aop;
 
-//import com.jfinal.aop.Aop;
 
 public class CatMainTest {
 
   public static void main(String[] args) {
-    SimpleApp.run(CatMainTest.class.getName(), "index");
+    new CatMainTest().index();
+    //SimpleApp.run(CatMainTest.class.getName(), "index");
   }
 
   public void index() {
@@ -18,6 +16,6 @@ public class CatMainTest {
     // ProxyManager.me().setProxyFactory(new CglibProxyFactory());
     Cat cat = Aop.get(Cat.class);
     String eat = cat.eat();
-    System.out.println(eat);
+    System.out.println("result:" + eat);
   }
 }
