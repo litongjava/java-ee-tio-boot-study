@@ -1,31 +1,29 @@
 package com.litongjava.tio.web.hello.config;
 
-import com.litongjava.data.utils.TioRequestParamUtils;
-import com.litongjava.jfinal.aop.Aop;
 import com.litongjava.jfinal.aop.annotation.ABean;
 import com.litongjava.jfinal.aop.annotation.AConfiguration;
-import com.litongjava.jfinal.plugin.activerecord.ActiveRecordPlugin;
-import com.litongjava.jfinal.plugin.activerecord.OrderedFieldContainerFactory;
-import com.litongjava.tio.utils.environment.EnvironmentUtils;
 import com.litongjava.tio.web.hello.config.utils.TDUtils;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import javax.sql.DataSource;
+
 @AConfiguration
-public class TdEngineConfig {
+public class TdEngineDataSourceConfig {
+  
   @ABean(destroyMethod = "close", priority = 10)
-  public HikariDataSource hikariDataSource() {
+  public DataSource hikariDataSource() {
     HikariConfig config = new HikariConfig();
     // jdbc properties
     String host = "192.168.3.9";
     int port = 6041;
     String user = "root";
     String pswd = "taosdata";
+    String dbName = "test_ws_parabind";
     String driverClassName = "com.taosdata.jdbc.rs.RestfulDriver";
-    //String driverClassName = "com.taosdata.jdbc.TSDBDriver";
-    
-    // 添加batchfetch=true属性后得到的Websocket连接
-    String jdbcUrl = "jdbc:TAOS-RS://" + host + ":" + port + "?user=" + user + "&password=" + pswd + "&batchfetch=true";
+    // String driverClassName = "com.taosdata.jdbc.TSDBDriver";
+
+    String jdbcUrl = getJdbcUrl(host, port, user, pswd, dbName);
     config.setJdbcUrl(jdbcUrl);
     config.setDriverClassName(driverClassName);
     // connection pool configurations
@@ -41,18 +39,9 @@ public class TdEngineConfig {
     return ds;
   }
 
-//  @ABean(destroyMethod = "stop")
-//  public ActiveRecordPlugin activeRecordPlugin() {
-//    boolean showSql = EnvironmentUtils.getBoolean("jdbc.showSql", false);
-//
-//    HikariDataSource dataSource = Aop.get(HikariDataSource.class);
-//    ActiveRecordPlugin arp = new ActiveRecordPlugin(dataSource);
-//    arp.setContainerFactory(new OrderedFieldContainerFactory());
-//    arp.setShowSql(showSql);
-//
-//    // add
-//    TioRequestParamUtils.types.add("bigint");
-//    arp.start();
-//    return arp;
-//  }
+  private String getJdbcUrl(String host, int port, String user, String pswd, String dbName) {
+    // 添加batchfetch=true属性后得到的Websocket连接
+    return "jdbc:TAOS-RS://" + host + ":" + port + "/" + dbName + "?user=" + user + "&password=" + pswd
+        + "&batchfetch=true";
+  }
 }
