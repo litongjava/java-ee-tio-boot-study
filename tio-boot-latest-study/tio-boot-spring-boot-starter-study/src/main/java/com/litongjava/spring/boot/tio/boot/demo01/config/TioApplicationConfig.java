@@ -11,7 +11,7 @@ import com.litongjava.tio.boot.context.Context;
 @Configuration
 public class TioApplicationConfig {
 
-  @Bean
+  @Bean(destroyMethod = "close")
   public Context myBean(ApplicationArguments args) {
     String[] sourceArgs = args.getSourceArgs();
     return TioApplication.run(Applicaton.class, sourceArgs);

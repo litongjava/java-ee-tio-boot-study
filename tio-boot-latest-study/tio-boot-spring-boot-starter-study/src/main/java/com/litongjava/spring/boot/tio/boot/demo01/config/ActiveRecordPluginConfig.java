@@ -9,7 +9,7 @@ import com.litongjava.jfinal.plugin.druid.DruidPlugin;
 
 @AConfiguration
 public class ActiveRecordPluginConfig {
-  @ABean(priority = 10)
+  @ABean(priority = 10,destroyMethod = "stop")
   public DruidPlugin druidPlugin() {
     String jdbcUrl = "jdbc:mysql://192.168.3.9:3306/mybatis_plus_study";
     String jdbcUser = "root";
@@ -20,7 +20,7 @@ public class ActiveRecordPluginConfig {
     return druidPlugin;
   }
 
-  @ABean
+  @ABean(destroyMethod = "stop")
   public ActiveRecordPlugin activeRecordPlugin() {
     DruidPlugin druidPlugin = Aop.get(DruidPlugin.class);
     ActiveRecordPlugin arp = new ActiveRecordPlugin(druidPlugin);
