@@ -1,15 +1,16 @@
 package com.litongjava.tio.boot.hello.config;
 
-import com.litongjava.jfinal.aop.annotation.Bean;
-import com.litongjava.jfinal.aop.annotation.Configuration;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 
-@Configuration
+import com.litongjava.jfinal.aop.annotation.ABean;
+import com.litongjava.jfinal.aop.annotation.AConfiguration;
+
+@AConfiguration
 public class RedissonConfig {
 
-  @Bean(destroyMethod = "shutdown", priority = 10)
+  @ABean(destroyMethod = "shutdown", priority = 10)
   public RedissonClient redissonClient() {
     Config config = new Config();
     config.useSingleServer().setAddress("redis://localhost:6379").setDatabase(0);

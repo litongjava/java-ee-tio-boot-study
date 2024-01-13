@@ -4,8 +4,7 @@ import java.io.File;
 import java.util.Date;
 
 import com.alibaba.fastjson2.JSONObject;
-import com.litongjava.jfinal.aop.annotation.Controller;
-import com.litongjava.jfinal.kit.Kv;
+import com.jfinal.kit.Kv;
 import com.litongjava.tio.boot.hello.model.User;
 import com.litongjava.tio.http.common.HttpRequest;
 import com.litongjava.tio.http.common.HttpResponse;
@@ -22,7 +21,6 @@ import lombok.extern.slf4j.Slf4j;
  * @author tanyaowu
  * 2017年6月29日 下午7:53:59
  */
-@Controller
 @Slf4j
 @RequestPath(value = "/demo")
 public class DemoController {

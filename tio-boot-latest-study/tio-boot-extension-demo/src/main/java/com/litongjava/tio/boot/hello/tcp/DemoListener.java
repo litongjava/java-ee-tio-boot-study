@@ -1,6 +1,6 @@
 package com.litongjava.tio.boot.hello.tcp;
 
-import com.litongjava.jfinal.aop.annotation.Component;
+import com.litongjava.jfinal.aop.annotation.AComponent;
 import com.litongjava.tio.boot.tcp.ServerHanlderListener;
 import com.litongjava.tio.core.ChannelContext;
 import com.litongjava.tio.core.intf.Packet;
@@ -8,7 +8,7 @@ import com.litongjava.tio.core.intf.Packet;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Component
+@AComponent
 public class DemoListener implements ServerHanlderListener {
   public void onAfterConnected(ChannelContext channelContext, boolean isConnected, boolean isReconnect)
       throws Exception {

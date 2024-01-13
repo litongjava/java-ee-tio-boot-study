@@ -1,12 +1,13 @@
 package com.litongjava.tio.boot.hello.services;
 
-import com.github.benmanes.caffeine.cache.Cache;
-import com.litongjava.jfinal.aop.annotation.Service;
 import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;
-import com.litongjava.jfinal.aop.Aop;
 
-@Service
+import com.github.benmanes.caffeine.cache.Cache;
+import com.litongjava.jfinal.aop.Aop;
+import com.litongjava.jfinal.aop.annotation.AService;
+
+@AService
 public class CacheService {
 
   private final Cache<String, Object> caffeineCache;

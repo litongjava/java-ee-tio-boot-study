@@ -1,9 +1,9 @@
 package com.litongjava.tio.boot.hello.controller;
 
-import com.litongjava.jfinal.aop.annotation.Controller;
+import com.litongjava.jfinal.aop.annotation.AController;
 import com.litongjava.tio.http.server.annotation.RequestPath;
 
-@Controller
+@AController
 @RequestPath("/test/string")
 public class TestStringController {
 

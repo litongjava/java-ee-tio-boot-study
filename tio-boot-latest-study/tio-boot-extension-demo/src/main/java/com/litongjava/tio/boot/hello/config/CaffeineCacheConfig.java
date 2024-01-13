@@ -4,17 +4,14 @@ import java.util.concurrent.TimeUnit;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
-import com.litongjava.jfinal.aop.annotation.Bean;
-import com.litongjava.jfinal.aop.annotation.Configuration;
+import com.litongjava.jfinal.aop.annotation.ABean;
+import com.litongjava.jfinal.aop.annotation.AConfiguration;
 
-@Configuration
+@AConfiguration
 public class CaffeineCacheConfig {
-  @Bean
+  @ABean
   public Cache<String, Object> caffeineCache() {
-    return Caffeine.newBuilder()
-      .maximumSize(10000)
-      .expireAfterWrite(5, TimeUnit.MINUTES)
-      .build();
+    return Caffeine.newBuilder().maximumSize(10000).expireAfterWrite(5, TimeUnit.MINUTES).build();
   }
 
 }

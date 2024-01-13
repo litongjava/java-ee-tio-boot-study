@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
-import com.litongjava.jfinal.aop.annotation.Bean;
-import com.litongjava.jfinal.aop.annotation.Configuration;
+import com.litongjava.jfinal.aop.annotation.ABean;
 import com.litongjava.tio.boot.hello.job.MyJobHandler;
 import com.xxl.job.core.executor.XxlJobExecutor;
 import com.xxl.job.core.executor.impl.XxlJobSimpleExecutor;
@@ -16,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 //@Configuration
 public class XxlJobExecutorConfig {
 
-  @Bean(destroyMethod = "destroy")
+  @ABean(destroyMethod = "destroy")
   public XxlJobSimpleExecutor xxlJobSimpleExecutor() {
     // load executor prop
     Properties xxlJobProp = loadProperties("xxl-job-executor.properties");

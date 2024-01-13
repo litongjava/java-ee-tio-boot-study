@@ -1,9 +1,9 @@
 package com.litongjava.tio.boot.hello.services;
 
-import com.litongjava.jfinal.aop.annotation.Service;
+import com.litongjava.jfinal.aop.annotation.AService;
 import com.litongjava.tio.boot.hello.model.User;
 
-@Service
+@AService
 public class UserServiceImpl implements UserService {
 
   @Override

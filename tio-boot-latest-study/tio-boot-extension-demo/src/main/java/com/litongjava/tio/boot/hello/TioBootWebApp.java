@@ -1,10 +1,10 @@
 package com.litongjava.tio.boot.hello;
 
 import com.litongjava.hotswap.wrapper.tio.boot.TioApplicationWrapper;
-import com.litongjava.jfinal.aop.annotation.ComponentScan;
+import com.litongjava.jfinal.aop.annotation.AComponentScan;
 import com.litongjava.tio.utils.quartz.QuartzUtils;
 
-@ComponentScan
+@AComponentScan
 public class TioBootWebApp {
   public static void main(String[] args) throws Exception {
     long start = System.currentTimeMillis();

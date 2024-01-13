@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.litongjava.jfinal.aop.annotation.Controller;
 import com.litongjava.tio.http.common.HeaderName;
 import com.litongjava.tio.http.common.HeaderValue;
 import com.litongjava.tio.http.common.HttpRequest;
@@ -18,7 +17,6 @@ import cn.hutool.jwt.JWTUtil;
 /**
  * token永不过期
  */
-@Controller
 @RequestPath("/auth")
 public class AuthController {
 

@@ -1,8 +1,7 @@
 package com.litongjava.tio.boot.hello.controller;
 
 import com.litongjava.jfinal.aop.Aop;
-import com.litongjava.jfinal.aop.Autowired;
-import com.litongjava.jfinal.aop.annotation.Controller;
+import com.litongjava.jfinal.aop.annotation.AAutowired;
 import com.litongjava.tio.boot.context.TioApplicationContext;
 import com.litongjava.tio.boot.hello.services.IndexService;
 import com.litongjava.tio.http.common.HttpRequest;
@@ -14,12 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequestPath("/")
-@Controller
 public class IndexController {
 
 //  private IndexService indexService = Aop.get(IndexService.class);
   // 不支持在Controller中使用@Autowired注解
-  @Autowired
+  @AAutowired
   private IndexService indexService;
 
   @RequestPath

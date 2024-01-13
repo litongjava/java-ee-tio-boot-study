@@ -1,12 +1,12 @@
 package com.litongjava.tio.boot.hello.controller;
 
 import com.litongjava.data.model.DbJsonBean;
-import com.litongjava.jfinal.aop.annotation.Controller;
+import com.litongjava.jfinal.aop.annotation.AController;
 import com.litongjava.tio.http.server.annotation.RequestPath;
 
 import cn.hutool.core.lang.Validator;
 
-@Controller
+@AController
 @RequestPath("/login")
 public class LoginController {
 

@@ -1,14 +1,12 @@
 package com.litongjava.tio.boot.hello.controller;
 
 import com.litongjava.jfinal.aop.Aop;
-import com.litongjava.jfinal.aop.annotation.Controller;
 import com.litongjava.tio.boot.hello.services.CacheService;
 import com.litongjava.tio.http.server.annotation.RequestPath;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Controller
 @RequestPath("/cache")
 public class CacheTestController {
 

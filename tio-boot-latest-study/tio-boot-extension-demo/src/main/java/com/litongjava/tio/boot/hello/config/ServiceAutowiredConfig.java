@@ -1,21 +1,21 @@
 package com.litongjava.tio.boot.hello.config;
 
-import com.litongjava.jfinal.aop.Autowired;
-import com.litongjava.jfinal.aop.annotation.Configuration;
-import com.litongjava.jfinal.aop.annotation.Initialization;
+import com.litongjava.jfinal.aop.annotation.AAutowired;
+import com.litongjava.jfinal.aop.annotation.AConfiguration;
+import com.litongjava.jfinal.aop.annotation.AInitialization;
 import com.litongjava.tio.boot.hello.model.User;
 import com.litongjava.tio.boot.hello.services.IndexService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Configuration
+@AConfiguration
 @Slf4j
 public class ServiceAutowiredConfig {
 
-  @Autowired
+  @AAutowired
   private IndexService indexService;
 
-  @Initialization
+  @AInitialization
   public void nothingToDo() {
     User user = indexService.getUser();
     log.info("user:{}", user);

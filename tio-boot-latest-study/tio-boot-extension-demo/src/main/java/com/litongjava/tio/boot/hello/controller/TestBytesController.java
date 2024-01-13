@@ -1,10 +1,10 @@
 package com.litongjava.tio.boot.hello.controller;
 
-import com.litongjava.jfinal.aop.annotation.Controller;
+import com.litongjava.jfinal.aop.annotation.AController;
 import com.litongjava.tio.http.common.HttpRequest;
 import com.litongjava.tio.http.server.annotation.RequestPath;
 
-@Controller
+@AController
 @RequestPath("/test/bytes")
 public class TestBytesController {
 

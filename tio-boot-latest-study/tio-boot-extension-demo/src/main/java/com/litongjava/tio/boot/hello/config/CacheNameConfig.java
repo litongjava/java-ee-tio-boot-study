@@ -2,16 +2,16 @@ package com.litongjava.tio.boot.hello.config;
 
 import java.util.List;
 
-import com.litongjava.jfinal.aop.annotation.Bean;
-import com.litongjava.jfinal.aop.annotation.Configuration;
+import com.litongjava.jfinal.aop.annotation.ABean;
+import com.litongjava.jfinal.aop.annotation.AConfiguration;
 import com.litongjava.tio.boot.hello.model.CacheName;
 import com.litongjava.tio.boot.hello.services.CacheNameService;
 import com.litongjava.tio.utils.cache.caffeine.CaffeineCacheFactory;
 
-@Configuration
+@AConfiguration
 public class CacheNameConfig {
 
-  @Bean
+  @ABean
   public CacheNameService register() {
 
     CacheNameService cacheNameService = new CacheNameService();

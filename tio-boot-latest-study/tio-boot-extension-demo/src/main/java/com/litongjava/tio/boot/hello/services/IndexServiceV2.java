@@ -1,13 +1,13 @@
 package com.litongjava.tio.boot.hello.services;
 
-import com.litongjava.jfinal.aop.Autowired;
-import com.litongjava.jfinal.aop.annotation.Service;
+import com.litongjava.jfinal.aop.annotation.AAutowired;
+import com.litongjava.jfinal.aop.annotation.AService;
 import com.litongjava.tio.boot.hello.model.User;
 
-@Service
+@AService
 public class IndexServiceV2 implements IndexService {
 
-  @Autowired
+  @AAutowired
   private UserService userService;
 
   public User getUser() {

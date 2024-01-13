@@ -7,7 +7,7 @@ import com.jfinal.plugin.activerecord.OrderedFieldContainerFactory;
 import com.jfinal.template.Engine;
 import com.jfinal.template.source.ClassPathSourceFactory;
 import com.litongjava.jfinal.aop.Aop;
-import com.litongjava.jfinal.aop.annotation.Bean;
+import com.litongjava.jfinal.aop.annotation.ABean;
 import com.litongjava.tio.utils.environment.EnvironmentUtils;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -15,12 +15,11 @@ import com.zaxxer.hikari.HikariDataSource;
 //@Configuration
 public class TableToJsonConfig {
 
-
   /**
    * config datasource
    * @return
    */
-  @Bean(priority = 1)
+  @ABean(priority = 1)
   public DataSource dataSource() {
     String jdbcUrl = EnvironmentUtils.get("jdbc.url");
     String jdbcUser = EnvironmentUtils.get("jdbc.user");
@@ -42,7 +41,7 @@ public class TableToJsonConfig {
    * @return
    * @throws Exception
    */
-  @Bean(destroyMethod = "stop", initMethod = "start")
+  @ABean(destroyMethod = "stop", initMethod = "start")
   public ActiveRecordPlugin activeRecordPlugin() throws Exception {
     DataSource dataSource = Aop.get(DataSource.class);
     String property = EnvironmentUtils.get("mode");
