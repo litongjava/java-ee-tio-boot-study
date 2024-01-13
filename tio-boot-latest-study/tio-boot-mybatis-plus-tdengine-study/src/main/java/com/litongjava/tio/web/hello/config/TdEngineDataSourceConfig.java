@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 
 @AConfiguration
 public class TdEngineDataSourceConfig {
+
   @ABean(destroyMethod = "close", priority = 10)
   public DataSource hikariDataSource() {
     HikariConfig config = new HikariConfig();
@@ -41,6 +42,6 @@ public class TdEngineDataSourceConfig {
   private String getJdbcUrl(String host, int port, String user, String pswd, String dbName) {
     // 添加batchfetch=true属性后得到的Websocket连接
     return "jdbc:TAOS-RS://" + host + ":" + port + "/" + dbName + "?user=" + user + "&password=" + pswd
-        + "&batchfetch=true";
+      + "&batchfetch=true";
   }
 }

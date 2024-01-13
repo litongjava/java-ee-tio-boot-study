@@ -19,7 +19,6 @@ import lombok.Cleanup;
 public class TbEngineTestController {
 
   public String connection() throws SQLException {
-
     @Cleanup
     Connection connection = TDUtils.ds.getConnection();
     String string = connection.toString();
