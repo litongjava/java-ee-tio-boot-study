@@ -32,8 +32,8 @@ public class HelloWebSocketHandler implements IWsMsgHandler {
     String myname = request.getParam("name");
 
     Tio.bindUser(channelContext, myname);
-//    channelContext.setUserid(myname);
-    log.info("收到来自{}的ws握手包\r\n{}", clientip, request.toString());
+    // channelContext.setUserid(myname);
+    log.info("收到来自{}的ws握手包{}", clientip, request.toString());
     return httpResponse;
   }
 
