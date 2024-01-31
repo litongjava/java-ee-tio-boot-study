@@ -27,7 +27,7 @@ public class HelloWebSocketHandler implements IWsMsgHandler {
    */
   @Override
   public HttpResponse handshake(HttpRequest request, HttpResponse httpResponse, ChannelContext channelContext)
-      throws Exception {
+    throws Exception {
     String clientip = request.getClientIp();
     String myname = request.getParam("name");
 
@@ -46,7 +46,7 @@ public class HelloWebSocketHandler implements IWsMsgHandler {
    */
   @Override
   public void onAfterHandshaked(HttpRequest httpRequest, HttpResponse httpResponse, ChannelContext channelContext)
-      throws Exception {
+    throws Exception {
     // 绑定到群组，后面会有群发
     Tio.bindGroup(channelContext, GROUP_ID);
     int count = Tio.getAll(channelContext.tioConfig).getObj().size();
@@ -82,9 +82,7 @@ public class HelloWebSocketHandler implements IWsMsgHandler {
   public Object onText(WsRequest wsRequest, String text, ChannelContext channelContext) throws Exception {
     WsSessionContext wsSessionContext = (WsSessionContext) channelContext.get();
     String path = wsSessionContext.getHandshakeRequest().getRequestLine().path;
-    log.info("path:{}", path);
-
-    // log.info("收到ws消息:{}", text);
+    log.info("path:{},收到ws消息:{}", path, text);
 
     if (Objects.equals("心跳内容", text)) {
       return null;
