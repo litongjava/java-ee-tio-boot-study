@@ -1,20 +1,21 @@
 package demo;
 
-import java.io.IOException;
-
 import com.litongjava.tio.http.common.HttpConfig;
 import com.litongjava.tio.http.common.handler.HttpRequestHandler;
 import com.litongjava.tio.http.server.HttpServerStarter;
 import com.litongjava.tio.http.server.handler.HttpRoutes;
 import com.litongjava.tio.http.server.handler.SimpleHttpDispatcherHandler;
 import com.litongjava.tio.http.server.handler.SimpleHttpRoutes;
+import com.litongjava.tio.utils.json.GsonFactory;
+import com.litongjava.tio.utils.json.Json;
 import demo.controller.IndexController;
+
+import java.io.IOException;
 
 public class DemoHttpServer {
 
   public static void main(String[] args) throws IOException {
-
-
+    Json.setDefaultJsonFactory(new GsonFactory());
     // 实例化Controller
     IndexController controller = new IndexController();
 
