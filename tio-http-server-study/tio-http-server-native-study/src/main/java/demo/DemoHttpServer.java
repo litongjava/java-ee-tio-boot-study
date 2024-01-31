@@ -8,14 +8,12 @@ import com.litongjava.tio.http.server.HttpServerStarter;
 import com.litongjava.tio.http.server.handler.HttpRoutes;
 import com.litongjava.tio.http.server.handler.SimpleHttpDispatcherHandler;
 import com.litongjava.tio.http.server.handler.SimpleHttpRoutes;
-import com.litongjava.tio.utils.json.JFinalJsonKit;
 import demo.controller.IndexController;
 
 public class DemoHttpServer {
 
   public static void main(String[] args) throws IOException {
 
-    JFinalJsonKit.setTreatModelAsBean(true);
 
     // 实例化Controller
     IndexController controller = new IndexController();

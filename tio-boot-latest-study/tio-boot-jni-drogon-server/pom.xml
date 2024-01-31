@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.litongjava</groupId>
-  <artifactId>tio-http-server-native-study</artifactId>
+  <artifactId>tio-boot-jni-drogon-server</artifactId>
   <version>1.0.0</version>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -10,44 +10,87 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <graalvm.version>23.1.1</graalvm.version>
-    <tinylog.version>2.6.2</tinylog.version>
-    <mainClass.server>demo.DemoHttpServer</mainClass.server>
+    <tio-boot.version>1.3.7</tio-boot.version>
+    <lombok-version>1.18.30</lombok-version>
+    <hotswap-classloader.version>1.2.2</hotswap-classloader.version>
+    <final.name>web-hello</final.name>
+    <main.class>com.litongjava.tio.web.hello.HelloApp</main.class>
   </properties>
-
   <dependencies>
     <dependency>
       <groupId>com.litongjava</groupId>
-      <artifactId>tio-http-server</artifactId>
-      <version>3.7.3.v20240130-RELEASE</version>
+      <artifactId>tio-boot</artifactId>
+      <version>${tio-boot.version}</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.30</version>
+      <version>${lombok-version}</version>
       <optional>true</optional>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>hotswap-classloader</artifactId>
+      <version>${hotswap-classloader.version}</version>
+    </dependency>
   </dependencies>
-  <build>
-    <finalName>${project.artifactId}</finalName>
-  </build>
   <profiles>
+    <!-- 开发环境 -->
     <profile>
-      <id>jar</id>
+      <id>development</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
       <dependencies>
-        <!-- 非 GraalVM 环境用 tinylog -->
         <dependency>
-          <groupId>org.tinylog</groupId>
-          <artifactId>slf4j-tinylog</artifactId>
-          <version>${tinylog.version}</version>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <version>1.2.3</version>
         </dependency>
+      </dependencies>
+    </profile>
+
+    <!-- 生产环境 -->
+    <profile>
+      <id>production</id>
+      <dependencies>
         <dependency>
-          <groupId>org.tinylog</groupId>
-          <artifactId>tinylog-impl</artifactId>
-          <version>${tinylog.version}</version>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <version>1.2.3</version>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>2.7.4</version>
+            <configuration>
+              <mainClass>${main.class}</mainClass>
+              <excludeGroupIds>org.projectlombok</excludeGroupIds>
+            </configuration>
+            <!-- 设置执行目标 -->
+            <executions>
+              <execution>
+                <goals>
+                  <goal>repackage</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- assembly -->
+    <profile>
+      <id>assembly</id>
+      <dependencies>
+        <dependency>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <version>1.2.3</version>
         </dependency>
       </dependencies>
       <build>
@@ -64,7 +107,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>${mainClass.server}</mainClass>
+                  <mainClass>${main.class}</mainClass>
                 </manifest>
               </archive>
               <descriptorRefs>
@@ -86,7 +129,7 @@
       </build>
     </profile>
     <profile>
-      <id>server-graalvm</id>
+      <id>native</id>
       <dependencies>
         <!-- GraalVM 环境使用 jdk log -->
         <dependency>
@@ -103,7 +146,7 @@
         </dependency>
       </dependencies>
       <build>
-        <finalName>tio-http-server-graal</finalName>
+        <finalName>${final.name}</finalName>
         <plugins>
           <plugin>
             <groupId>org.graalvm.nativeimage</groupId>
@@ -119,8 +162,8 @@
             </executions>
             <configuration>
               <skip>false</skip>
-              <imageName>${project.artifactId}</imageName>
-              <mainClass>${mainClass.server}</mainClass>
+              <imageName>${final.name}</imageName>
+              <mainClass>${main.class}</mainClass>
               <buildArgs>
                 -H:+RemoveSaturatedTypeFlows
                 --allow-incomplete-classpath
