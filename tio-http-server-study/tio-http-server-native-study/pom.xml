@@ -86,7 +86,7 @@
       </build>
     </profile>
     <profile>
-      <id>server-graalvm</id>
+      <id>native</id>
       <dependencies>
         <!-- GraalVM 环境使用 jdk log -->
         <dependency>
