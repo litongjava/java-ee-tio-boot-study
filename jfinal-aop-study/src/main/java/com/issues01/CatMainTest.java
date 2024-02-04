@@ -7,7 +7,6 @@ public class CatMainTest {
 
   public static void main(String[] args) {
     new CatMainTest().index();
-    //SimpleApp.run(CatMainTest.class.getName(), "index");
   }
 
   public void index() {

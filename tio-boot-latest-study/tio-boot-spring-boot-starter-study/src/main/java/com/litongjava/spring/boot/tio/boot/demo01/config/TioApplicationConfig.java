@@ -8,7 +8,7 @@ import com.litongjava.spring.boot.tio.boot.demo01.Applicaton;
 import com.litongjava.tio.boot.TioApplication;
 import com.litongjava.tio.boot.context.Context;
 
-@Configuration
+//@Configuration
 public class TioApplicationConfig {
 
   @Bean(destroyMethod = "close")
