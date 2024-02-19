@@ -2,77 +2,83 @@ package com.litongjava.tio.boot.sqllite.config;
 
 import javax.sql.DataSource;
 
-import org.tio.utils.jfinal.P;
-
 import com.alibaba.druid.pool.DruidDataSource;
-import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
-import com.jfinal.plugin.activerecord.OrderedFieldContainerFactory;
-import com.jfinal.plugin.activerecord.dialect.Sqlite3Dialect;
 import com.jfinal.template.Engine;
 import com.jfinal.template.source.ClassPathSourceFactory;
-import com.litongjava.jfinal.aop.Aop;
-import com.litongjava.jfinal.aop.annotation.Bean;
-import com.litongjava.jfinal.aop.annotation.Configuration;
-import com.litongjava.tio.boot.context.Enviorment;
+import com.litongjava.jfinal.aop.annotation.AConfiguration;
+import com.litongjava.jfinal.aop.annotation.AInitialization;
+import com.litongjava.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.litongjava.jfinal.plugin.activerecord.OrderedFieldContainerFactory;
+import com.litongjava.jfinal.plugin.activerecord.dialect.Sqlite3Dialect;
+import com.litongjava.jfinal.plugin.hikaricp.DsContainer;
+import com.litongjava.tio.boot.constatns.ConfigKeys;
+import com.litongjava.tio.boot.server.TioBootServer;
+import com.litongjava.tio.utils.environment.EnvironmentUtils;
 
-@Configuration
+@AConfiguration
 public class TableToJsonConfig {
 
-  private Enviorment enviorment = Aop.get(Enviorment.class);
-
-//  @Bean(priority = 0)
-//  public DataSource dataSource() {
-//
-//    String jdbcDriverClass = enviorment.get("jdbc.driverClass");
-//    String jdbcUrl = enviorment.get("jdbc.url");
-//    String jdbcUser = enviorment.get("jdbc.user");
-//    String jdbcPswd = enviorment.get("jdbc.pswd");
-//
-//    HikariConfig config = new HikariConfig();
-//    // 设定基本参数
-//    config.setDriverClassName(jdbcDriverClass);
-//    config.setJdbcUrl(jdbcUrl);
-//    config.setUsername(jdbcUser);
-//    config.setPassword(jdbcPswd);
-////    config.setMaximumPoolSize(2);
-//
-//    return new HikariDataSource(config);
-//  }
-
-  @Bean(priority = 0, destroyMethod = "close")
+  /**
+   * create datasource
+   * @return
+   */
+  @AInitialization(priority = 10)
   public DataSource dataSource() {
-    String jdbcUrl = enviorment.get("jdbc.url");
-    String jdbcUser = enviorment.get("jdbc.user");
-    String jdbcPswd = enviorment.get("jdbc.pswd");
+    // get parameter from config file
+    String jdbcUrl = EnvironmentUtils.get("jdbc.url");
+    String jdbcUser = EnvironmentUtils.get("jdbc.user");
+    String jdbcPswd = EnvironmentUtils.get("jdbc.pswd");
+    String jdbcValidationQuery = EnvironmentUtils.get("jdbc.validationQuery");
 
+    // create datasource
     DruidDataSource druidDataSource = new DruidDataSource();
-    // 设定基本参数
+
+    // set basic parameter
     druidDataSource.setUrl(jdbcUrl);
     druidDataSource.setUsername(jdbcUser);
     druidDataSource.setPassword(jdbcPswd);
-//    druidDataSource.close();
+    druidDataSource.setValidationQuery(jdbcValidationQuery);
+    // save datasource
+    DsContainer.setDataSource(druidDataSource);
+    // close datasource while server close
+    TioBootServer.me().addDestroyMethod(druidDataSource::close);
     return druidDataSource;
   }
 
-  @Bean(destroyMethod = "stop", initMethod = "start")
+  /**
+   * create ActiveRecordPlugin
+   * @return
+   * @throws Exception
+   */
+  @AInitialization
   public ActiveRecordPlugin activeRecordPlugin() throws Exception {
-    DataSource dataSource = Aop.get(DataSource.class);
-    String property = P.get("tio.mode");
+    // get datasource from DsContainer
+    DataSource dataSource = DsContainer.ds;
+
+    // get parameter from config file
+    Boolean tioDevMode = EnvironmentUtils.getBoolean(ConfigKeys.TIO_DEV_MODE, false);
+    boolean jdbcShowSql = EnvironmentUtils.getBoolean("jdbc.showSql", false);
+    // cretae plugin
     ActiveRecordPlugin arp = new ActiveRecordPlugin(dataSource);
+    // set parameter
     arp.setDialect(new Sqlite3Dialect());
-    // arp.setShowSql(enviorment.getBoolean("jdbc.showSql"));
     arp.setContainerFactory(new OrderedFieldContainerFactory());
-    if ("dev".equals(property)) {
+    arp.setShowSql(jdbcShowSql);
+
+    if (tioDevMode) {
       arp.setDevMode(true);
     }
 
+    // config engine
     Engine engine = arp.getEngine();
-
     engine.setSourceFactory(new ClassPathSourceFactory());
     engine.setCompressorOn(' ');
     engine.setCompressorOn('\n');
     // arp.addSqlTemplate("/sql/all_sqls.sql");
-//    arp.start();
+    // start plugin
+    arp.start();
+    // close plugin while server close
+    TioBootServer.me().addDestroyMethod(arp::stop);
     return arp;
   }
 }

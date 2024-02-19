@@ -1,18 +1,14 @@
 package com.litongjava.tio.boot.sqllite;
 
-import org.tio.utils.jfinal.P;
-
 import com.litongjava.hotswap.wrapper.tio.boot.TioApplicationWrapper;
-import com.litongjava.jfinal.aop.annotation.ComponentScan;
+import com.litongjava.jfinal.aop.annotation.AComponentScan;
 
-@ComponentScan
-public class App {
+@AComponentScan
+public class TioBootSqlLiteApp {
 
   public static void main(String[] args) {
     long start = System.currentTimeMillis();
-
-    P.use("app.properties");
-    TioApplicationWrapper.run(App.class, args);
+    TioApplicationWrapper.run(TioBootSqlLiteApp.class, args);
     long end = System.currentTimeMillis();
     System.out.println((end - start) + "ms");
   }
