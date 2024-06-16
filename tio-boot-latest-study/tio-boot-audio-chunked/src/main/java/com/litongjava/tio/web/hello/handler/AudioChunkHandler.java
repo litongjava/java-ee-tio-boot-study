@@ -52,9 +52,7 @@ public class AudioChunkHandler {
       int i = 0;
       while ((bytesRead = inputStream.read(buffer)) != -1) {
         i++;
-        byte[] chunkData = new byte[bytesRead];
-        System.arraycopy(buffer, 0, chunkData, 0, bytesRead);
-        SseBytesPacket ssePacket = new SseBytesPacket(ChunkEncoder.encodeChunk(chunkData, bytesRead));
+        SseBytesPacket ssePacket = new SseBytesPacket(ChunkEncoder.encodeChunk(buffer, bytesRead));
         Tio.send(channelContext, ssePacket);
         log.info("sned:{}:{}", i, bytesRead);
       }
