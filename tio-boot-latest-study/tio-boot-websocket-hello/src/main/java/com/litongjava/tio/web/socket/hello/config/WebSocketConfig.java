@@ -13,7 +13,7 @@ public class WebSocketConfig {
   public void config() {
     WebSocketRoutes webSocketRoutes = new WebSocketRoutes();
     webSocketRoutes.add("/hello", new HelloWebSocketHandler());
-    //添加到TioBootServer
-    TioBootServer.setWebSocketRoutes(webSocketRoutes);
+    // 添加到TioBootServer,为了保证高性能,默认webSocketRoutes为null,必须添加
+    TioBootServer.me().setWebSocketRoutes(webSocketRoutes);
   }
 }

@@ -23,7 +23,7 @@ public class HelloWebSocketHandler implements IWsMsgHandler {
   public static final String CHARSET = "utf-8";
 
   /**
-   * 握手时走这个方法，业务可以在这里获取cookie，request参数等
+   * 处理握手，业务可以在这里获取cookie，request参数等
    */
   @Override
   public HttpResponse handshake(HttpRequest request, HttpResponse httpResponse, ChannelContext channelContext)
@@ -38,6 +38,7 @@ public class HelloWebSocketHandler implements IWsMsgHandler {
   }
 
   /**
+   * 握手完成后
    * @param httpRequest
    * @param httpResponse
    * @param channelContext
