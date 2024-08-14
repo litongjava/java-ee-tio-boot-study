@@ -1,16 +1,15 @@
 package com.litongjava.jfinal.plugins.redis;
 
 import com.alibaba.fastjson2.JSON;
-import com.litongjava.jfinal.aop.Aop;
-import com.litongjava.jfinal.plugin.redis.Cache;
-import com.litongjava.jfinal.plugin.redis.Redis;
-import com.litongjava.jfinal.plugin.redis.RedisPlugin;
 import com.litongjava.jfinal.plugins.model.User;
+import com.litongjava.redis.Cache;
+import com.litongjava.redis.Redis;
+import com.litongjava.redis.RedisPlugin;
 
 /**
  * Created by litonglinux@qq.com on 12/17/2023_5:06 PM
  */
-public class RedisDemo {
+public class RedisDemo02 {
   public static void main(String[] args) {
 
     // 用于缓存bbs模块的redis服务

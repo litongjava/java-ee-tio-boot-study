@@ -1,8 +1,8 @@
 package com.litongjava.jfinal.plugins.ecache;
 
 
+import com.litongjava.ehcache.EhCachePlugin;
 import com.litongjava.jfinal.aop.Aop;
-import com.litongjava.jfinal.plugin.ehcache.EhCachePlugin;
 
 public class EcacheDemo {
   public static void main(String[] args) {

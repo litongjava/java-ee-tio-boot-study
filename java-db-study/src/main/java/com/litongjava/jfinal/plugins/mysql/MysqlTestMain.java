@@ -1,12 +1,12 @@
 package com.litongjava.jfinal.plugins.mysql;
 
-import com.litongjava.jfinal.plugin.activerecord.ActiveRecordPlugin;
-import com.litongjava.jfinal.plugin.activerecord.Db;
-import com.litongjava.jfinal.plugin.activerecord.OrderedFieldContainerFactory;
-import com.litongjava.jfinal.plugin.activerecord.Record;
-import com.litongjava.jfinal.plugin.druid.DruidPlugin;
-
 import java.util.List;
+
+import com.litongjava.db.activerecord.ActiveRecordPlugin;
+import com.litongjava.db.activerecord.Db;
+import com.litongjava.db.activerecord.OrderedFieldContainerFactory;
+import com.litongjava.db.activerecord.Record;
+import com.litongjava.db.druid.DruidPlugin;
 
 /**
  * Created by litonglinux@qq.com on 12/30/2023_12:48 AM
