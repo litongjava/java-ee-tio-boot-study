@@ -28,7 +28,5 @@ public class MysqlTestMain {
     List<Record> records = Db.findAll("USER");
     System.out.println(records.size());
 
-
-
   }
 }

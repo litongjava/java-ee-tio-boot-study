@@ -2,8 +2,8 @@ package com.litongjava.jfinal.plugins.redis;
 
 import com.alibaba.fastjson2.JSON;
 import com.litongjava.jfinal.plugins.model.User;
-import com.litongjava.redis.Cache;
 import com.litongjava.redis.Redis;
+import com.litongjava.redis.RedisCache;
 import com.litongjava.redis.RedisPlugin;
 
 /**
@@ -16,18 +16,17 @@ public class RedisDemo02 {
     RedisPlugin bbsRedis = new RedisPlugin("bbs", "localhost");
     bbsRedis.start();
 
-    Cache bbsCache = Redis.use("bbs");
-    //存储String类型
+    RedisCache bbsCache = Redis.use("bbs");
+    // 存储String类型
     bbsCache.set("key", "value___001");
     Object value = bbsCache.get("key");
     System.out.println(value);
 
-    //存储Object类型
-    Object obj=new String("value___001");
+    // 存储Object类型
+    Object obj = new String("value___001");
     bbsCache.set("key_object", obj);
     value = bbsCache.get("key_object");
     System.out.println(value);
-
 
     // 使用 lambda 开放 Jedis API
     Long ret = Redis.call(j -> j.incrBy("increase", 1));
@@ -46,7 +45,6 @@ public class RedisDemo02 {
     });
 
     System.out.println(user1);
-
 
   }
 }

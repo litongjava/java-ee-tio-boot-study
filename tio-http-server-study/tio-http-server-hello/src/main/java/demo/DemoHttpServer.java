@@ -2,37 +2,41 @@ package demo;
 
 import java.io.IOException;
 
+import com.litongjava.model.body.RespBodyVo;
 import com.litongjava.tio.http.common.HttpConfig;
-import com.litongjava.tio.http.common.handler.HttpRequestHandler;
+import com.litongjava.tio.http.common.HttpResponse;
+import com.litongjava.tio.http.common.handler.ITioHttpRequestHandler;
 import com.litongjava.tio.http.server.HttpServerStarter;
-import com.litongjava.tio.http.server.handler.HttpRoutes;
-import com.litongjava.tio.http.server.handler.SimpleHttpDispatcherHandler;
-import com.litongjava.tio.http.server.handler.SimpleHttpRoutes;
-
-import demo.controller.IndexController;
+import com.litongjava.tio.http.server.handler.DefaultHttpRequestDispatcher;
+import com.litongjava.tio.http.server.router.DefaultHttpReqeustRouter;
+import com.litongjava.tio.http.server.router.HttpRequestRouter;
+import com.litongjava.tio.server.ServerTioConfig;
 
 public class DemoHttpServer {
 
   public static void main(String[] args) throws IOException {
-
-    // 实例化Controller
-    IndexController controller = new IndexController();
-
     // 手动添加路由
-    HttpRoutes simpleHttpRoutes = new SimpleHttpRoutes();
-    simpleHttpRoutes.add("/", controller::index);
-    simpleHttpRoutes.add("/login", controller::login);
-    simpleHttpRoutes.add("/exception", controller::exception);
+    HttpRequestRouter simpleHttpRoutes = new DefaultHttpReqeustRouter();
 
-    // 配置服务服务器
-    HttpConfig httpConfig;
-    HttpRequestHandler requestHandler;
-    HttpServerStarter httpServerStarter;
+    simpleHttpRoutes.add("/ok", (request) -> {
+      return new HttpResponse(request).setJson(RespBodyVo.ok("ok"));
+    });
+    //httpConfig
+    HttpConfig httpConfig = new HttpConfig(80, null, null, null);
+    httpConfig.setUseSession(false);
+    httpConfig.setWelcomeFile(null);
+    httpConfig.setCheckHost(false);
 
-    httpConfig = new HttpConfig(80, null, null, null);
-    requestHandler = new SimpleHttpDispatcherHandler(httpConfig, simpleHttpRoutes);
-    httpServerStarter = new HttpServerStarter(httpConfig, requestHandler);
-    // 启动服务器
+    //requestHandler
+    ITioHttpRequestHandler requestHandler = new DefaultHttpRequestDispatcher(httpConfig, simpleHttpRoutes);
+    //httpServerStarter
+    HttpServerStarter httpServerStarter = new HttpServerStarter(httpConfig, requestHandler);
+    ServerTioConfig serverTioConfig = httpServerStarter.getServerTioConfig();
+    serverTioConfig.setServerAioListener(null);
+    serverTioConfig.statOn = false;
+    serverTioConfig.setHeartbeatTimeout(0);
+    //serverTioConfig.setUseQueueSend(false);
+
     httpServerStarter.start();
   }
 

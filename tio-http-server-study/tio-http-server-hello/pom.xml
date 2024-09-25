@@ -10,8 +10,6 @@
     <maven.compiler.target>${java.version}</maven.compiler.target>
 
     <graalvm.version>23.1.1</graalvm.version>
-    <mica-mqtt.version>2.2.6</mica-mqtt.version>
-    <mica-net.version>0.1.6</mica-net.version>
     <tinylog.version>2.6.2</tinylog.version>
     <mainClass.server>demo.DemoHttpServer</mainClass.server>
   </properties>
@@ -20,59 +18,60 @@
     <dependency>
       <groupId>com.litongjava</groupId>
       <artifactId>tio-http-server</artifactId>
-      <version>3.7.3.v20231223-RELEASE</version>
+      <version>3.7.3.v20240918-RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
     </dependency>
   </dependencies>
   <build>
     <finalName>${project.artifactId}</finalName>
   </build>
   <profiles>
+    <!-- development -->
     <profile>
-      <id>jar</id>
+      <id>development</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
-      <dependencies>
-        <!-- 非 GraalVM 环境用 tinylog -->
-        <dependency>
-          <groupId>org.tinylog</groupId>
-          <artifactId>slf4j-tinylog</artifactId>
-          <version>${tinylog.version}</version>
-        </dependency>
-        <dependency>
-          <groupId>org.tinylog</groupId>
-          <artifactId>tinylog-impl</artifactId>
-          <version>${tinylog.version}</version>
-        </dependency>
-      </dependencies>
       <build>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <version>3.2.0</version>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <version>3.1.1</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>2.7.4</version>
             <configuration>
-              <archive>
-                <manifest>
-                  <mainClass>${mainClass.server}</mainClass>
-                </manifest>
-              </archive>
-              <descriptorRefs>
-                <descriptorRef>jar-with-dependencies</descriptorRef>
-              </descriptorRefs>
-              <appendAssemblyId>false</appendAssemblyId>
+              <fork>true</fork>
+              <mainClass>${main.class}</mainClass>
+              <excludeGroupIds>org.projectlombok</excludeGroupIds>
+              <arguments>
+                <argument>--mode=dev</argument>
+              </arguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- production -->
+    <profile>
+      <id>production</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>2.7.4</version>
+            <configuration>
+              <mainClass>${main.class}</mainClass>
+              <excludeGroupIds>org.projectlombok</excludeGroupIds>
             </configuration>
             <executions>
               <execution>
-                <id>make-assembly</id>
-                <phase>package</phase>
                 <goals>
-                  <goal>single</goal>
+                  <goal>repackage</goal>
                 </goals>
               </execution>
             </executions>
@@ -81,7 +80,7 @@
       </build>
     </profile>
     <profile>
-      <id>server-graalvm</id>
+      <id>graalvm</id>
       <dependencies>
         <!-- GraalVM 环境使用 jdk log -->
         <dependency>
