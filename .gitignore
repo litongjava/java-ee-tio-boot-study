@@ -130,3 +130,7 @@ querydsl/
 
 *.log
 .env
+*.png
+*.jpg
+output/
+*.mp4
