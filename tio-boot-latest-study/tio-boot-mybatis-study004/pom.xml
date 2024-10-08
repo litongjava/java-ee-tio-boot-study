@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.litongjava</groupId>
+  <artifactId>tio-boot-mybatis-study004</artifactId>
+  <version>1.0.0</version>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.8</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <graalvm.version>23.1.1</graalvm.version>
+    <tio-boot.version>1.7.2</tio-boot.version>
+    <lombok-version>1.18.30</lombok-version>
+    <jfinal-aop.version>1.3.2</jfinal-aop.version>
+    <hotswap-classloader.version>1.2.6</hotswap-classloader.version>
+
+    <final.name>web-hello</final.name>
+
+    <main.class>demo.mybatis.MybatisApp</main.class>
+  </properties>
+  <dependencies>
+
+    <!-- 日志框架 -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+
+    <!-- Tio Boot 框架 -->
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>tio-boot</artifactId>
+      <version>${tio-boot.version}</version>
+    </dependency>
+
+    <!-- 热加载类加载器 -->
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>hotswap-classloader</artifactId>
+      <version>${hotswap-classloader.version}</version>
+    </dependency>
+
+    <!-- JFinal AOP -->
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>jfinal-aop</artifactId>
+      <version>${jfinal-aop.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok-version}</version>
+      <optional>true</optional>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- mybatis -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.4.4</version>
+    </dependency>
+
+    <!-- 连接池 -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.2.10</version>
+    </dependency>
+
+    <!-- 数据库驱动 -->
+    <!--
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.46</version>
+    </dependency>
+    -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.2.24</version>
+    </dependency>
+
+    <!-- JUnit 用于测试 -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
