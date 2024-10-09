@@ -1,7 +1,7 @@
 package com.issues02;
 
-import com.litongjava.jfinal.aop.annotation.AAutowired;
-import com.litongjava.jfinal.aop.annotation.AController;
+import com.litongjava.annotation.AAutowired;
+import com.litongjava.annotation.AController;
 
 @AController
 public class DemoController {

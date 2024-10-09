@@ -2,8 +2,8 @@ package com.issues02;
 
 import java.util.List;
 
+import com.litongjava.annotation.AComponentScan;
 import com.litongjava.jfinal.aop.Aop;
-import com.litongjava.jfinal.aop.annotation.AComponentScan;
 
 @AComponentScan
 public class DemoApp {
