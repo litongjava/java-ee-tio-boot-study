@@ -1,6 +1,6 @@
 package com.litongjava.tio.boot.hello.tcp.packet;
 
-import com.litongjava.tio.core.intf.Packet;
+import com.litongjava.aio.Packet;
 
 /**
 * socket消息包

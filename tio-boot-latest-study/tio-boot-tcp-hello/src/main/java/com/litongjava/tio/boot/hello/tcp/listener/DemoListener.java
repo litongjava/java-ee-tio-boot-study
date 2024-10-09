@@ -1,13 +1,13 @@
 package com.litongjava.tio.boot.hello.tcp.listener;
 
-import com.litongjava.tio.boot.tcp.ServerHanlderListener;
+import com.litongjava.aio.Packet;
 import com.litongjava.tio.core.ChannelContext;
-import com.litongjava.tio.core.intf.Packet;
+import com.litongjava.tio.server.intf.ServerAioListener;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class DemoListener implements ServerHanlderListener {
+public class DemoListener implements ServerAioListener {
   public void onAfterConnected(ChannelContext channelContext, boolean isConnected, boolean isReconnect)
       throws Exception {
     log.info("{},{},{}", channelContext, isConnected, isReconnect);

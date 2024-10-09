@@ -1,21 +1,21 @@
 package com.litongjava.tio.boot.hello.tcp.config;
 
-import com.litongjava.jfinal.aop.annotation.AInitialization;
-import com.litongjava.jfinal.aop.annotation.BeforeStartConfiguration;
+import com.litongjava.annotation.AInitialization;
+import com.litongjava.annotation.BeforeStartConfiguration;
 import com.litongjava.tio.boot.hello.tcp.handler.DemoHandler;
 import com.litongjava.tio.boot.hello.tcp.listener.DemoListener;
 import com.litongjava.tio.boot.server.TioBootServer;
-import com.litongjava.tio.boot.tcp.ServerTcpHandler;
 
 @BeforeStartConfiguration
 public class TioBootServerConfig {
 
   @AInitialization
   public void config() {
-    ServerTcpHandler demoHandler = new DemoHandler();
-    TioBootServer.setServerTcpHandler(demoHandler);
+    TioBootServer server = TioBootServer.me();
+    DemoHandler demoHandler = new DemoHandler();
+    server.setServerAioHandler(demoHandler);
 
     DemoListener demoListener = new DemoListener();
-    TioBootServer.setServerAioListener(demoListener);
+    server.setServerAioListener(demoListener);
   }
 }

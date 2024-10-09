@@ -2,18 +2,18 @@ package com.litongjava.tio.boot.hello.tcp.handler;
 
 import java.nio.ByteBuffer;
 
+import com.litongjava.aio.Packet;
 import com.litongjava.tio.boot.hello.tcp.packet.DemoPacket;
-import com.litongjava.tio.boot.tcp.ServerTcpHandler;
 import com.litongjava.tio.core.ChannelContext;
 import com.litongjava.tio.core.Tio;
 import com.litongjava.tio.core.TioConfig;
 import com.litongjava.tio.core.exception.TioDecodeException;
-import com.litongjava.tio.core.intf.Packet;
+import com.litongjava.tio.server.intf.ServerAioHandler;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class DemoHandler implements ServerTcpHandler {
+public class DemoHandler implements ServerAioHandler {
 
   public Packet decode(ByteBuffer buffer, int limit, int position, int readableLength, ChannelContext channelContext)
       throws TioDecodeException {
