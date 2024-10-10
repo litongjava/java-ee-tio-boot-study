@@ -1,18 +1,19 @@
 package com.issues01;
 
-import com.litongjava.jfinal.aop.Interceptor;
-import com.litongjava.jfinal.aop.Invocation;
-import lombok.extern.slf4j.Slf4j;
-
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
+import com.litongjava.jfinal.aop.AopInterceptor;
+import com.litongjava.jfinal.aop.AopInvocation;
+
+import lombok.extern.slf4j.Slf4j;
+
 
 @Slf4j
-public class Aspect1 implements Interceptor {
+public class Aspect1 implements AopInterceptor {
 
   @Override
-  public void intercept(Invocation invocation) {
+  public void intercept(AopInvocation invocation) {
     System.out.println("Before Aspect1 invoking");
     Method method = invocation.getMethod();
     String methodName = invocation.getMethodName();
