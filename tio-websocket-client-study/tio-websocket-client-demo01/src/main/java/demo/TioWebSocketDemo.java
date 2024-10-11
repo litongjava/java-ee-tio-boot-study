@@ -3,16 +3,17 @@ package demo;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CountDownLatch;
 import java.util.function.Consumer;
 
 import com.litongjava.tio.websocket.client.WebSocket;
-import com.litongjava.tio.websocket.client.WsClient;
-import com.litongjava.tio.websocket.client.config.WsClientConfig;
+import com.litongjava.tio.websocket.client.WebsocketClient;
+import com.litongjava.tio.websocket.client.config.WebsocketClientConfig;
 import com.litongjava.tio.websocket.client.event.CloseEvent;
 import com.litongjava.tio.websocket.client.event.ErrorEvent;
 import com.litongjava.tio.websocket.client.event.MessageEvent;
 import com.litongjava.tio.websocket.client.event.OpenEvent;
-import com.litongjava.tio.websocket.common.WsPacket;
+import com.litongjava.tio.websocket.common.WebSocketPacket;
 
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
@@ -22,13 +23,15 @@ public class TioWebSocketDemo {
   public static void main(String[] args) throws Exception {
     Map<Long, Boolean> sent = new ConcurrentHashMap<>();
     int total = 1000;
-    String uri = "ws://localhost/hello";
+    String uri = "ws://127.0.0.1:9326/hello";
+    CountDownLatch latch = new CountDownLatch(total);
 
     // onNext
     io.reactivex.functions.Consumer<? super List<Object>> onNext = x -> {
       Boolean all = sent.values().stream().reduce(true, (p, c) -> p && c);
       if (all) {
         System.out.println("All sent success! ");
+        latch.countDown(); // 在所有消息都发送成功后减少计数
       }
     };
 
@@ -38,15 +41,18 @@ public class TioWebSocketDemo {
     complete.buffer(total).subscribe(onNext);
 
     // wsClientConfig
-    Consumer<OpenEvent> onOpen = e -> System.out.println("opened");
+    Consumer<OpenEvent> onOpen = e -> {
+      System.out.println("opened");
+    };
 
     Consumer<MessageEvent> onMessage = e -> {
-      WsPacket data = e.data;
+      WebSocketPacket data = e.data;
       Long id = data.getId();
       String wsBodyText = data.getWsBodyText();
       sent.put(id, true);
       System.out.println("recv: " + wsBodyText);
       complete.onNext(id);
+      latch.countDown(); // 每次接收到消息后减少计数
     };
 
     Consumer<CloseEvent> onClose = e -> System.out.printf("on close: %d, %s, %s\n", e.code, e.reason, e.wasClean);
@@ -54,10 +60,10 @@ public class TioWebSocketDemo {
     Consumer<Throwable> onThrows = Throwable::printStackTrace;
 
     // wsClientConfig
-    WsClientConfig wsClientConfig = new WsClientConfig(onOpen, onMessage, onClose, onError, onThrows);
+    WebsocketClientConfig wsClientConfig = new WebsocketClientConfig(onOpen, onMessage, onClose, onError, onThrows);
 
     // create
-    WsClient echo = WsClient.create(uri, wsClientConfig);
+    WebsocketClient echo = WebsocketClient.create(uri, wsClientConfig);
 
     // connect
     WebSocket ws = echo.connect();
@@ -67,5 +73,9 @@ public class TioWebSocketDemo {
       ws.send("" + i);
       System.out.println("sent: " + i);
     }
+
+    // 等待所有消息接收完毕
+    latch.await();
+    System.out.println("All messages have been received.");
   }
 }

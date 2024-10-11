@@ -14,7 +14,7 @@
     <dependency>
       <groupId>com.litongjava</groupId>
       <artifactId>tio-websocket-client</artifactId>
-      <version>3.7.3.v20210706</version>
+      <version>3.7.3.v20241005-RELEASE</version>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
