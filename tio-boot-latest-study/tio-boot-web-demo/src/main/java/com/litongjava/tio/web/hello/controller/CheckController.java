@@ -1,9 +1,9 @@
 package com.litongjava.tio.web.hello.controller;
 
+import com.litongjava.annotation.GatewayCheck;
 import com.litongjava.annotation.RequestPath;
-import com.litongjava.aop.GatewayCheck;
-import com.litongjava.aop.RequiresAuthentication;
-import com.litongjava.aop.RequiresPermissions;
+import com.litongjava.annotation.RequiresAuthentication;
+import com.litongjava.annotation.RequiresPermissions;
 import com.litongjava.model.body.RespBodyVo;
 
 @RequestPath("/check")

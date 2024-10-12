@@ -9,38 +9,75 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <graalvm.version>23.1.1</graalvm.version>
-    <tio.boot.version>1.7.4</tio.boot.version>
     <lombok-version>1.18.30</lombok-version>
+    <fastjson2.version>2.0.52</fastjson2.version>
+    <java-model.version>1.1.1</java-model.version>
+    <tio-boot.version>1.7.6</tio-boot.version>
     <hotswap-classloader.version>1.2.6</hotswap-classloader.version>
     <jfinal-aop.version>1.3.3</jfinal-aop.version>
-    <fastjson2.version>2.0.52</fastjson2.version>
+    <java-db.version>1.3.3</java-db.version>
+    <api-table.version>1.4.4</api-table.version>
+    <tio.version>3.7.3.v20241007-RELEASE</tio.version>
+    <java.java-openai>1.0.4</java.java-openai>
+
     <final.name>web-hello</final.name>
     <main.class>com.litongjava.tio.web.hello.HelloApp</main.class>
   </properties>
   <dependencies>
     <dependency>
       <groupId>com.litongjava</groupId>
-      <artifactId>tio-boot</artifactId>
-      <version>${tio.boot.version}</version>
+      <artifactId>java-model</artifactId>
+      <version>${java-model.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${lombok-version}</version>
-      <optional>true</optional>
-      <scope>provided</scope>
+      <groupId>com.litongjava</groupId>
+      <artifactId>tio-utils</artifactId>
+      <version>${tio.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>tio-boot</artifactId>
+      <version>${tio-boot.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>com.litongjava</groupId>
       <artifactId>hotswap-classloader</artifactId>
       <version>${hotswap-classloader.version}</version>
     </dependency>
 
-    <!-- JFinal AOP -->
+
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>api-table</artifactId>
+      <version>${api-table.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>com.litongjava</groupId>
       <artifactId>jfinal-aop</artifactId>
       <version>${jfinal-aop.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>java-db</artifactId>
+      <version>${java-db.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>java-openai</artifactId>
+      <version>${java.java-openai}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok-version}</version>
+      <optional>true</optional>
+      <scope>provided</scope>
     </dependency>
 
     <!-- FastJSON2 用于 JSON 解析 -->
