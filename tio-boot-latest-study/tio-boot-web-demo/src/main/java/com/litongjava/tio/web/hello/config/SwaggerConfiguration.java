@@ -1,38 +1,53 @@
 package com.litongjava.tio.web.hello.config;
 
-import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
 import com.litongjava.annotation.AConfiguration;
 import com.litongjava.annotation.Initialization;
+import com.litongjava.tio.boot.http.handler.common.WebjarHandler;
+import com.litongjava.tio.boot.server.TioBootServer;
+import com.litongjava.tio.boot.swagger.SwaggerResourceHandler;
+import com.litongjava.tio.boot.swagger.SwaggerV2ApiDocsHandler;
+import com.litongjava.tio.boot.swagger.TioSwaggerV2Config;
+import com.litongjava.tio.http.server.router.HttpRequestRouter;
+import com.litongjava.tio.web.hello.controller.SwaggerUiHandler;
 
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @AConfiguration
-@EnableSwagger2
-@EnableSwaggerBootstrapUI
 public class SwaggerConfiguration {
 
   @Initialization
-  public Docket createRestApi() {
-    return new Docket(DocumentationType.SWAGGER_2)
-        //
-        .enable(true).apiInfo(apiInfo())
-        //
-        .select().apis(RequestHandlerSelectors.basePackage("com.litongjava.tio.web.hello.controller"))
-        //
-        .paths(PathSelectors.any()).build();
-  }
+  public void config() {
+    TioBootServer server = TioBootServer.me();
 
-  private ApiInfo apiInfo() {
-    return new ApiInfoBuilder().title("小红书粉商工作台API文档")
+    @SuppressWarnings("deprecation")
+    ApiInfo appInfo = new ApiInfoBuilder().title("工作台API文档")
         //
-        .description("粉商工作台相关接口").termsOfServiceUrl("http://ip:7001/")
+        .description("工作台相关接口")
         //
         .contact("***@mail.com").version("1.0").build();
+
+    TioSwaggerV2Config tioSwaggerV2Config = new TioSwaggerV2Config();
+    tioSwaggerV2Config.setApiInfo(appInfo);
+    tioSwaggerV2Config.setEnable(true);
+
+    server.setSwaggerV2Config(tioSwaggerV2Config);
+
+    HttpRequestRouter requestRouter = server.getRequestRouter();
+
+    if (requestRouter != null) {
+      SwaggerUiHandler swggerUiHander = new SwaggerUiHandler();
+      requestRouter.add("/doc.html", swggerUiHander::html);
+      WebjarHandler webjarHandler = new WebjarHandler();
+      requestRouter.add("/webjars/**", webjarHandler::index);
+
+      SwaggerResourceHandler swaggerResourceHandler = new SwaggerResourceHandler();
+      requestRouter.add("/swagger-resources", swaggerResourceHandler::index);
+      requestRouter.add("/swagger-resources/configuration/ui", swaggerResourceHandler::configurationUi);
+
+      SwaggerV2ApiDocsHandler swaggerV2ApiDocsHandler = new SwaggerV2ApiDocsHandler();
+      requestRouter.add("/v2/api-docs", swaggerV2ApiDocsHandler::index);
+    }
   }
+
 }
