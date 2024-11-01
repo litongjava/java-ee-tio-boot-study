@@ -21,9 +21,9 @@ public class SwaggerConfiguration {
     TioBootServer server = TioBootServer.me();
 
     @SuppressWarnings("deprecation")
-    ApiInfo appInfo = new ApiInfoBuilder().title("工作台API文档")
+    ApiInfo appInfo = new ApiInfoBuilder().title("DemoAPI文档")
         //
-        .description("工作台相关接口")
+        .description("Demo相关接口")
         //
         .contact("***@mail.com").version("1.0").build();
 
@@ -38,6 +38,7 @@ public class SwaggerConfiguration {
     if (requestRouter != null) {
       SwaggerUiHandler swggerUiHander = new SwaggerUiHandler();
       requestRouter.add("/doc.html", swggerUiHander::html);
+      
       WebjarHandler webjarHandler = new WebjarHandler();
       requestRouter.add("/webjars/**", webjarHandler::index);
 
