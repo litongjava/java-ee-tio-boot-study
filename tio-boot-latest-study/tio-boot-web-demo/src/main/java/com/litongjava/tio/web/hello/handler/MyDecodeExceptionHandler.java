@@ -4,6 +4,7 @@ import java.nio.ByteBuffer;
 
 import com.litongjava.tio.boot.decode.TioDecodeExceptionHandler;
 import com.litongjava.tio.core.ChannelContext;
+import com.litongjava.tio.core.Tio;
 import com.litongjava.tio.core.exception.TioDecodeException;
 import com.litongjava.tio.http.common.HttpConfig;
 
@@ -11,6 +12,7 @@ public class MyDecodeExceptionHandler implements TioDecodeExceptionHandler {
 
   @Override
   public void handle(ByteBuffer buffer, ChannelContext channelContext, HttpConfig httpConfig, TioDecodeException e) {
+    Tio.close(channelContext, "MyDecodeExceptionHandler");
     // 创建缓冲区的只读副本
     ByteBuffer readOnlyBuffer = buffer.asReadOnlyBuffer();
 
