@@ -1,0 +1,192 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.litongjava</groupId>
+  <artifactId>tio-boot-telegram4j-demo01</artifactId>
+  <version>1.0.0</version>
+  <properties>
+    <!-- 项目属性 -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>17</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+
+    <!-- 版本属性 -->
+    <graalvm.version>23.1.1</graalvm.version>
+    <lombok-version>1.18.30</lombok-version>
+    <fastjson2.version>2.0.52</fastjson2.version>
+
+    <java-model.version>1.1.4</java-model.version>
+    <tio-utils.version>3.7.3.v20241015-RELEASE</tio-utils.version>
+    <tio-boot.version>1.8.7</tio-boot.version>
+    <hotswap-classloader.version>1.2.6</hotswap-classloader.version>
+    <jfinal-aop.version>1.3.3</jfinal-aop.version>
+    <java-db.version>1.4.6</java-db.version>
+    <api-table.version>1.4.8</api-table.version>
+    <java.java-openai>1.1.2</java.java-openai>
+
+    <!-- 应用程序属性 -->
+    <final.name>web-hello</final.name>
+    <main.class>com.litongjava.tio.web.hello.HelloApp</main.class>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>java-model</artifactId>
+      <version>${java-model.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>tio-utils</artifactId>
+      <version>${tio-utils.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>tio-boot</artifactId>
+      <version>${tio-boot.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>hotswap-classloader</artifactId>
+      <version>${hotswap-classloader.version}</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>api-table</artifactId>
+      <version>${api-table.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>jfinal-aop</artifactId>
+      <version>${jfinal-aop.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>java-db</artifactId>
+      <version>${java-db.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>java-openai</artifactId>
+      <version>${java.java-openai}</version>
+    </dependency>
+
+    <!-- 日志框架 -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+
+
+    <!-- FastJSON2 用于 JSON 解析 -->
+    <dependency>
+      <groupId>com.alibaba.fastjson2</groupId>
+      <artifactId>fastjson2</artifactId>
+      <version>${fastjson2.version}</version>
+    </dependency>
+
+    <!-- OkHttp 客户端 -->
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>3.11.0</version>
+    </dependency>
+
+    <!-- Lombok 用于简化代码 -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok-version}</version>
+      <optional>true</optional>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- JUnit 用于测试 -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.telegram4j</groupId>
+      <artifactId>telegram4j-core</artifactId>
+      <version>0.1.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>s01.oss.sonatype.org-snapshot</id>
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+
+  <profiles>
+    <!-- 开发环境配置 -->
+    <profile>
+      <id>development</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <!-- Spring Boot Maven 插件 -->
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>2.7.4</version>
+            <configuration>
+              <fork>true</fork>
+              <mainClass>${main.class}</mainClass>
+              <excludeGroupIds>org.projectlombok</excludeGroupIds>
+              <arguments>
+                <argument>--mode=dev</argument>
+              </arguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- 生产环境配置 -->
+    <profile>
+      <id>production</id>
+      <build>
+        <plugins>
+          <!-- Spring Boot Maven 插件 -->
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>2.7.4</version>
+            <configuration>
+              <mainClass>${main.class}</mainClass>
+              <excludeGroupIds>org.projectlombok</excludeGroupIds>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>repackage</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>
