@@ -8,12 +8,12 @@ import com.litongjava.tio.boot.TioApplication;
 
 @SpringBootApplication
 @AComponentScan
-public class Applicaton {
+public class SpringBootWebApplication {
 
   public static void main(String[] args) {
     long start = System.currentTimeMillis();
-    SpringApplication.run(Applicaton.class, args);
-    TioApplication.run(Applicaton.class, args);
+    SpringApplication.run(SpringBootWebApplication.class, args);
+    TioApplication.run(SpringBootWebApplication.class, args);
     long end = System.currentTimeMillis();
     System.out.println(end - start + "(ms)");
   }
