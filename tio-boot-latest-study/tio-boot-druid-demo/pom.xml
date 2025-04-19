@@ -1,90 +1,73 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.litongjava</groupId>
-  <artifactId>jave-server</artifactId>
+  <artifactId>tio-boot-druid-demo</artifactId>
   <version>1.0.0</version>
   <properties>
+    <!-- 项目属性 -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-    <graalvm.version>23.1.1</graalvm.version>
+
+    <!-- 版本属性 -->
     <lombok-version>1.18.30</lombok-version>
-    <tio-boot.version>1.5.0</tio-boot.version>
-    <jfinal-aop.version>1.2.6</jfinal-aop.version>
     <fastjson2.version>2.0.52</fastjson2.version>
-    <hotswap-classloader.version>1.2.4</hotswap-classloader.version>
+
+    <!-- 应用程序属性 -->
     <final.name>web-hello</final.name>
-    <main.class>com.litongjava.jave.server.JaveServerApp</main.class>
+    <main.class>com.litongjava.telegram.bots.TelegramBotApp</main.class>
   </properties>
+
   <dependencies>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.2.3</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.litongjava</groupId>
-      <artifactId>tio-core</artifactId>
-      <version>3.7.3.v20240901-RELEASE</version>
-    </dependency>
-
-    <dependency>
-      <groupId>ws.schild</groupId>
-      <artifactId>jave-all-deps</artifactId>
-      <version>3.5.0</version>
-    </dependency>
 
     <dependency>
       <groupId>com.litongjava</groupId>
       <artifactId>tio-boot</artifactId>
-      <version>${tio-boot.version}</version>
+      <version>1.9.5</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.1.23</version>
     </dependency>
 
     <dependency>
-      <groupId>com.litongjava</groupId>
-      <artifactId>hotswap-classloader</artifactId>
-      <version>${hotswap-classloader.version}</version>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.2.24</version>
     </dependency>
 
-    <dependency>
-      <groupId>com.litongjava</groupId>
-      <artifactId>jfinal-aop</artifactId>
-      <version>${jfinal-aop.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.alibaba.fastjson2</groupId>
-      <artifactId>fastjson2</artifactId>
-      <version>${fastjson2.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.squareup.okhttp3</groupId>
-      <artifactId>okhttp</artifactId>
-      <version>3.11.0</version>
-    </dependency>
-
+    <!-- Lombok 用于简化代码 -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>${lombok-version}</version>
       <optional>true</optional>
-      <scope>provided</scope>
     </dependency>
 
+    <!-- Tio Boot 框架 -->
+    <dependency>
+      <groupId>com.litongjava</groupId>
+      <artifactId>tio-boot-admin</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+
+
+    <!-- JUnit 用于测试 -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
-
-
   </dependencies>
+
+
   <profiles>
-    <!-- development -->
+    <!-- 开发环境配置 -->
     <profile>
       <id>development</id>
       <activation>
@@ -92,6 +75,7 @@
       </activation>
       <build>
         <plugins>
+          <!-- Spring Boot Maven 插件 -->
           <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
@@ -109,18 +93,44 @@
       </build>
     </profile>
 
-    <!-- production -->
+    <!-- 生产环境配置 -->
     <profile>
       <id>production</id>
       <build>
         <plugins>
-          <!-- 组装文件并压缩zip插件 -->
+          <!-- Spring Boot Maven 插件 -->
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>2.7.4</version>
+            <configuration>
+              <mainClass>${main.class}</mainClass>
+              <excludeGroupIds>org.projectlombok</excludeGroupIds>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>repackage</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Assembly 配置 -->
+    <profile>
+      <id>assembly</id>
+      <build>
+        <plugins>
+          <!-- Maven Assembly 插件 -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
             <version>3.3.0</version>
             <configuration>
-              <!-- not append assembly id in release file name -->
+              <!-- 不在发布文件名中追加 assembly id -->
               <appendAssemblyId>false</appendAssemblyId>
               <descriptors>
                 <descriptor>assembly-${assembly}.xml</descriptor>
@@ -137,15 +147,12 @@
             </executions>
           </plugin>
         </plugins>
-        <!-- 多模块项目资源配置在classpath下 -->
+        <!-- 资源配置 -->
         <resources>
           <resource>
             <directory>src/main/resources</directory>
             <includes>
-              <include>**/*.xml</include>
-              <include>**/*.properties</include>
-              <include>**/*.yml</include>
-              <include>**/*.conf</include>
+              <include>**/*.*</include>
             </includes>
           </resource>
         </resources>
