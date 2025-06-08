@@ -1,6 +1,6 @@
-package com.litongjava.tio.web.hello;
+package com.litongjava.tio.web.hello.controller;
 
-import com.litongjava.tio.http.server.annotation.RequestPath;
+import com.litongjava.annotation.RequestPath;
 
 @RequestPath("/")
 public class IndexController {

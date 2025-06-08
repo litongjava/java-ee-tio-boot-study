@@ -1,6 +1,6 @@
 package com.litongjava.tio.web.hello;
 
-import com.litongjava.jfinal.aop.annotation.AComponentScan;
+import com.litongjava.annotation.AComponentScan;
 import com.litongjava.tio.boot.TioApplication;
 
 @AComponentScan

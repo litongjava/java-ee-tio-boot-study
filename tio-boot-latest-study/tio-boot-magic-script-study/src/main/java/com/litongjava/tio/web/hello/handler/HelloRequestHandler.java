@@ -28,7 +28,6 @@ public class HelloRequestHandler {
     context.set("request", httpRequest);
 
     
-    
     // 执行脚本
     return (HttpResponse) ScriptManager.executeScript(script, context);
     
