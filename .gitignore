@@ -134,3 +134,4 @@ querydsl/
 *.jpg
 output/
 *.mp4
+secrets.txt

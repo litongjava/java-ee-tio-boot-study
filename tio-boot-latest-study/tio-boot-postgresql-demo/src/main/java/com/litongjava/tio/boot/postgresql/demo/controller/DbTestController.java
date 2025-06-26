@@ -1,24 +1,23 @@
 package com.litongjava.tio.boot.postgresql.demo.controller;
 import java.util.List;
 
-import org.tio.http.common.HttpRequest;
-import org.tio.http.server.annotation.RequestPath;
-
 import com.jfinal.kit.Kv;
-import com.litongjava.data.model.DbJsonBean;
-import com.litongjava.data.services.DbJsonService;
-import com.litongjava.data.utils.DbJsonBeanUtils;
-import com.litongjava.jfinal.aop.Aop;
+import com.litongjava.annotation.RequestPath;
+import com.litongjava.db.TableResult;
+import com.litongjava.db.activerecord.Row;
+import com.litongjava.table.services.ApiTable;
+import com.litongjava.table.utils.TableResultUtils;
+import com.litongjava.tio.http.common.HttpRequest;
 
 @RequestPath("/db/student")
 public class DbTestController {
 
-  DbJsonService dbJsonService = Aop.get(DbJsonService.class);
 
   @RequestPath("/list")
-  public DbJsonBean<List<Kv>> list(HttpRequest request) {
+  public TableResult<List<Kv>> list(HttpRequest request) {
     String tableName = "student";
-    DbJsonBean<List<Kv>> jsonBean = DbJsonBeanUtils.recordsToKv(dbJsonService.listAll(tableName));
-    return jsonBean;
+    TableResult<List<Row>> result = ApiTable.listAll(tableName);
+    TableResult<List<Kv>> recordsToKv = TableResultUtils.recordsToKv(result, false);
+    return recordsToKv;
   }
 }
