@@ -2,6 +2,7 @@ package com.litongjava.android.tio.boot.controller;
 
 
 import com.blankj.utilcode.util.NetworkUtils;
+import com.litongjava.jfinal.aop.context.AopContext;
 import com.litongjava.tio.boot.TioApplication;
 
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ public class TioBootServerApp {
 
     public static void run() {
         long start = System.currentTimeMillis();
+        AopContext.me().setComponentScanner(new AndroidComponentScanner());
         TioBootServerConfig tioBootServerConfig = new TioBootServerConfig();
         String[] args = new String[]{"--server.port=10051"};
         TioApplication.run(TioBootServerApp.class, tioBootServerConfig, args);
