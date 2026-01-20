@@ -33,7 +33,7 @@ public class SwaggerUiHandler {
       log.error("resouce is empty:{}", path);
       html = "resouce is empty";
     } else {
-      html = FileUtil.readURLAsString(resource).toString();
+      html = FileUtil.readString(resource).toString();
     }
     return Resps.html(response, html);
   }

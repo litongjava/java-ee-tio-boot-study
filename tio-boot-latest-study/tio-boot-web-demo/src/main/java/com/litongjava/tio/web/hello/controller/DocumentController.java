@@ -18,7 +18,7 @@ public class DocumentController {
     HttpResponse httpResponse = TioRequestContext.getResponse();
     httpResponse.setContentType(contentType);
     httpResponse.setHeader("Content-Disposition", "attachment; filename=\"" + downloadFilename + "\"");
-    httpResponse.setString("Hi");
+    httpResponse.setBody("Hi");
 
     return httpResponse;
   }

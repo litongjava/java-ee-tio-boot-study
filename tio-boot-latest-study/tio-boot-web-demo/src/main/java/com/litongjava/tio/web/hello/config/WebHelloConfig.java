@@ -22,7 +22,7 @@ public class WebHelloConfig {
       WebjarHandler webjarHandler = new WebjarHandler();
       requestRouter.add("/webjars/**", webjarHandler::index);
       HelloHandler helloHandler = new HelloHandler();
-      requestRouter.add("/hello", helloHandler::hello);
+      requestRouter.add("/hello", helloHandler);
     }
   }
 

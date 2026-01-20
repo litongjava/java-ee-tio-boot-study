@@ -19,7 +19,7 @@ public class SimleUploadController {
       FileUtil.writeBytes(fileData, file);
     }
     HttpResponse response = TioRequestContext.getResponse();
-    return response.setString("sucess");
+    return response.setBody("sucess");
   }
 
 }
