@@ -22,7 +22,7 @@
 
     <java-db.version>1.4.9</java-db.version>
     <api-table.version>1.5.2</api-table.version>
-    <java.java-openai>1.1.4</java.java-openai>
+    <java.java-openai>1.2.6</java.java-openai>
 
 
     <final.name>web-hello</final.name>
