@@ -16,6 +16,18 @@
     <main.class>com.litongjava.spring.boot.tio.boot.demo01.Applicaton</main.class>
   </properties>
 
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -38,15 +50,13 @@
       <artifactId>tio-boot</artifactId>
       <version>2.0.6</version>
     </dependency>
-    
-    
+
+
     <dependency>
       <groupId>com.litongjava</groupId>
       <artifactId>jfinal-aop</artifactId>
       <version>${jfinal-aop.version}</version>
     </dependency>
-
-
   </dependencies>
 
   <build>
@@ -74,16 +84,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring-boot.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 </project>
