@@ -1,6 +1,6 @@
 package com.demo.gateway.check;
 
-import com.litongjava.aop.GatewayCheck;
+import com.litongjava.annotation.GatewayCheck;
 
 public class TestController {
 

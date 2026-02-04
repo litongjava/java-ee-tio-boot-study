@@ -136,3 +136,4 @@ output/
 *.mp4
 secrets.txt
 application.properties
+my.txt
